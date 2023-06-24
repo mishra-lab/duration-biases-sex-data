@@ -1,0 +1,43 @@
+\usepackage{authblk}
+\usepackage[margin=40mm]{geometry}
+\usepackage{mathtools,newtxsf}
+\usepackage[sfdefault,osf]{gandhi}
+\usepackage[italic]{mathastext}
+\usepackage[scale=.8]{FiraMono}
+\usepackage{microtype}
+\DisableLigatures{shape=sc}
+% spacing
+\usepackage[onehalfspacing]{setspace}
+\frenchspacing
+\setlength{\parskip}{1ex}
+\setlength{\parindent}{0ex}
+\setlength{\abovecaptionskip}{\medskipamount}
+\setlength{\belowcaptionskip}{\medskipamount}
+\usepackage{enumitem}\setlist{itemsep=0pt,topsep=0pt}
+% floats
+\usepackage{graphicx}
+\graphicspath{{fig/}}
+% helpers
+\usepackage{xspace}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\shortquote}[1]{``\emph{#1}''}
+\newcommand{\sref}[1]{\S\,\ref{#1}\xspace}
+\newcommand{\rarr}{\ensuremath{\rightarrow}\xspace}
+% bib
+\usepackage[
+  style=numeric,
+  doi=false,
+  isbn=false,
+  url=true,
+  natbib=true,
+]{biblatex}
+\addbibresource{/home/jesse/refs/library.bib}
+\usepackage[colorlinks,citecolor=magenta]{hyperref}
+% appendix
+\let\xappendix\appendix
+\renewcommand{\appendix}{\xappendix
+  \renewcommand*{\thepage}{A.\arabic{page}}
+  \counterwithin{table}{section}
+  \counterwithin{figure}{section}
+  \counterwithin{equation}{section}
+  \clearpage\setcounter{page}{1}}
