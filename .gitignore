@@ -1,0 +1,20 @@
+# general
+.old/
+.tmp/
+# tex
+*.aux
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.brf
+*.log
+*.out
+*.ptc*
+*.run.xml
+*.synctex
+*.synctex.gz
+*.toc
+# windows
+.DS_Store
