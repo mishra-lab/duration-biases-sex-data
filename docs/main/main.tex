@@ -1,14 +1,14 @@
-\documentclass{article}
+\documentclass[]{article}
 \input{config}
 \input{meta}
 \begin{document}
-  \maketitle
+  \input{front}
   \input{intro}
-  \clearpage % TEMP
   \input{methods}
   \input{results}
   \input{discuss}
   \clearpage\printbibliography
   \clearpage\appendix
-  \input{app}
+  \input{app.data}
+  \input{app.results}
 \end{document}
