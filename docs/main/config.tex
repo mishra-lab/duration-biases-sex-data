@@ -15,14 +15,19 @@
 \setlength{\belowcaptionskip}{\medskipamount}
 \usepackage{enumitem}\setlist{itemsep=0pt,topsep=0pt}
 % floats
-\usepackage{graphicx}
+\usepackage{graphicx,subcaption}
 \graphicspath{{fig/}}
 % helpers
 \usepackage{xspace}
+\newcommand{\vs}{\emph{vs}\xspace}
 \newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
 \newcommand{\shortquote}[1]{``\emph{#1}''}
 \newcommand{\sref}[1]{\S\,\ref{#1}\xspace}
 \newcommand{\rarr}{\ensuremath{\rightarrow}\xspace}
+\newcommand{\distr}[2]{\mathrm{#1}\,(#2)}
+\newcommand{\hreftt}[2][https://]{\href{#1#2}{\texttt{#2}}}
+\renewcommand{\paragraph}[1]{\par\textbf{#1.}\hskip.5em}
 % bib
 \usepackage[
   style=numeric,
@@ -33,6 +38,7 @@
 ]{biblatex}
 \addbibresource{/home/jesse/refs/library.bib}
 \usepackage[colorlinks,citecolor=magenta]{hyperref}
+\renewcommand{\bibfont}{\small}
 % appendix
 \let\xappendix\appendix
 \renewcommand{\appendix}{\xappendix
