@@ -1,0 +1,12 @@
+\begin{tikzpicture}[x=3em,y=1\baselineskip,thick]
+  \defrecall[2.45]{.25}
+  \fill[blu,opacity=.2] (\xri,0.5) rectangle (\xro,3.5);
+  \draw[blu,|<-] (\xri,4) -- ++ (-1/3,0);
+  \draw[blu,|<-] (\xro,4) -- ++ (+1/3,0) node[right]{$\omega = 1$};
+  \defrecall[2.45]{3}
+  \fill[blu,opacity=.1] (\xri,0.5) rectangle (\xro,3.5);
+  \draw[blu,|<->|] (\xri,0) -- node[below,align=center]{$\omega = 12$} (\xro,0);
+  \foreach \i in {0,...,35}{ \partnership{\i/4}{0.00}{3}{swo}} \node[swo,right] at (9.25,3) {$\delta \approx 0$};
+  \foreach \i in {0,..., 8}{ \partnership{\i*1}{1.00}{2}{swr}} \node[swr,right] at (9.25,2) {$\delta = 4$};
+  \foreach \i in {0,..., 0}{ \partnership{\i*0}{9.00}{1}{npp}} \node[npp,right] at (9.25,1) {$\delta = 36$};
+\end{tikzpicture}

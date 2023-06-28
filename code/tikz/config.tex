@@ -1,0 +1,40 @@
+\usepackage{tikz}
+\usepackage{newtxsf}
+\usepackage[tabular,osf,sfdefault]{gandhi}
+\usepackage[italic]{mathastext}
+\usepackage{xfp}
+\usetikzlibrary{arrows.meta}
+% colours
+\definecolor{red}{HTML}{CC0033}
+\definecolor{blu}{HTML}{0099CC}
+\definecolor{yel}{HTML}{FF9900}
+\definecolor{npp}{HTML}{2C0B57}
+\definecolor{swr}{HTML}{BB3754}
+\definecolor{swo}{HTML}{FBBE22}
+% styles
+\tikzset{
+  > = latex,
+  arrow/.style = {
+    line width = .5mm,
+    draw = #1,
+  },
+  unobs/.style = {#1!40},
+  partx/.style = {very thick},
+  parti/.style = {partx,{Circle[length=4pt]}- },
+  parto/.style = {partx, -{Rays[length=6pt]}},
+  partb/.style = {partx,{Circle[length=4pt]}-{Rays[length=6pt]}},
+  partz/.style = {partx, -{Square[length=4pt]}},
+}
+% partnerships
+\newif\ifdrawpairs
+\newcommand{\defrecall}[2][0]{\gdef\xri{#1}\gdef\xro{#1+#2}}
+\newcommand{\partnership}[4]{% xi,dx,y,style
+  \def\xpi{#1+.01}\def\xpo{#1+#2-.01}
+  \ifnum1=\fpeval{(\xpi>\xro)|(\xpo<\xri)} % fully unobserved
+    \draw[partb,#4,unobs=gray] (\xpi,#3) -- (\xpo,#3);
+  \else\ifnum1=\fpeval{\xpo>\xro} % right censored
+    \draw[parti,#4] (\xpi,#3) -- (\xro,#3);
+    \draw[parto,unobs=#4] (\xro,#3) -- (\xpo,#3);
+  \else % fully observedd
+    \draw[partb,#4] (\xpi,#3) -- (\xpo,#3);
+  \fi\fi}

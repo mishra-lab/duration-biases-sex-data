@@ -1,0 +1,8 @@
+\defrecall[9.5]{.01}
+\begin{tikzpicture}[x=5mm,y=\baselineskip,unobs/.style={draw=#1!50}]
+  \foreach \y/\dur/\n in {1/1/12,2/2/6,3/3/4,4/6/2,5/12/1}{
+    \foreach \i in {1,...,\n}{
+      \partnership{\i*\dur-\dur+\y}{\dur}{\y}{red}
+    }}
+  \draw[blu,arrow] (\xri,0) node[below]{survey} -- (\xri,6);
+\end{tikzpicture}
