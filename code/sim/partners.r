@@ -8,15 +8,7 @@
 # n      = number of samples in the simulation (survey n)
 # s      = number of simulations (number of surveys) -> 95%~CI
 
-library('reshape2')
-library('ggplot2')
-library('viridis')
-
-fig.save = function(name,...){
-  fname = paste0(file.path('..','out','fig','sim',name),'.pdf')
-  print(fname)
-  ggsave(fname,...)
-}
+source('sim/utils.r')
 
 x.sim = function(rp,dur,recall,n,...){
   # given the input args, simulate reported partners
@@ -51,14 +43,9 @@ do.plot = function(X,X.ci){
     geom_ribbon(data=X.ci,aes(ymin=sim.lo,ymax=sim.hi,fill=factor(dur)),alpha=.1) +
     scale_y_continuous(trans='log10') +
     scale_x_continuous(trans='log10') +
-    scale_color_viridis(discrete=TRUE,option='inferno',direction=-1,begin=.1,end=.9) +
-    scale_fill_viridis(discrete=TRUE,option='inferno',direction=-1,begin=.1,end=.9) +
     labs(x='Recall Period',y='Variable Value') +
-    labs(color='Partnership\nDuration',fill='Partnership\nDuration',lty='') +
-    theme_light() + theme(
-      strip.background=element_rect(fill='gray85'),
-      strip.text.x=element_text(color='black'),
-      strip.text.y=element_text(color='black'))
+    labs(color='Partnership\nDuration',fill='Partnership\nDuration',lty='')
+  g = plot.clean(g,dir=-1)
 }
 
 # main
