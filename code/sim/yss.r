@@ -1,6 +1,4 @@
 source('sim/utils.r')
-
-# constants
 s = 100000
 
 # effective n for each stratum from CI
@@ -19,11 +17,6 @@ yss.n = function(yss){
 l.fun = function(rate){
   d = diff(pexp(c(0,yss$yss),rate)) # stratum sizes
   l = prod(dbinom(round(d*yss$n),yss$n,yss$p.adj)) # likelihood
-}
-
-z.fun = function(x){
-  ci = unname(quantile(x,c(.025,.975)))
-  z = c(m=mean(x),lo=ci[1],hi=ci[2])
 }
 
 do.sim = function(yss){
@@ -45,9 +38,8 @@ do.plot = function(Xt,X){
     geom_ribbon(aes(ymin=cdf.lo,ymax=cdf.hi),alpha=.2) +
     geom_line(aes(y=cdf.m,color=adj)) +
     geom_point(data=X,aes(x=m,y=1-exp(-1),color=adj),size=1,show.legend=FALSE) +
-    scale_linetype_manual(values=c('11','31','61','solid')) +
-    labs(x='Years selling sex',y='Cumulative proportion') +
-    labs(color='Adjustment',fill='Adjustment',lty='Adjustment')
+    scale_linetype_manual(values=c('11','31','61','solid'),name='Adjustment') +
+    labs(x='Years selling sex',y='Cumulative proportion')
   g = plot.clean(g,case='yss')
 }
 
@@ -55,7 +47,7 @@ do.plot = function(Xt,X){
 yss = read.csv('sim/yss.csv',strip.white=TRUE)
 yss$n = yss.n(yss)
 X.s = do.sim(yss)
-X = data.frame(t(sapply(X.s,z.fun)))
+X = data.frame(t(sapply(X.s,mci.named)))
 print(round(X,2)) # data for table
 X$adj = factor(rownames(X),levels=rownames(X))
 Xt = merge(X,list(t=seq(0,20,.1)))
