@@ -1,6 +1,8 @@
 # general
 .old/
 .tmp/
+# code
+Rplots.pdf
 # tex
 *.aux
 *.bbl
