@@ -1,7 +1,7 @@
 \usepackage{authblk}
 \usepackage[margin=40mm]{geometry}
 \usepackage{mathtools,newtxsf}
-\usepackage[sfdefault,osf]{gandhi}
+\usepackage[sfdefault,osf,tabular]{gandhi}
 \usepackage[italic]{mathastext}
 \usepackage[scale=.8]{FiraMono}
 \usepackage{microtype}
@@ -15,8 +15,9 @@
 \setlength{\belowcaptionskip}{\medskipamount}
 \usepackage{enumitem}\setlist{itemsep=0pt,topsep=0pt}
 % floats
-\usepackage{graphicx,subcaption}
-\graphicspath{{fig/}}
+\usepackage{graphicx,subcaption,booktabs,multicol}
+\def\rootpath{../..}
+\graphicspath{{\rootpath/out/fig/tikz/}{\rootpath/out/fig/sim/}}
 % helpers
 \usepackage{xspace}
 \newcommand{\vs}{\emph{vs}\xspace}
@@ -32,6 +33,7 @@
 \usepackage[
   style=numeric,
   doi=false,
+  eprint=false,
   isbn=false,
   url=true,
   natbib=true,
