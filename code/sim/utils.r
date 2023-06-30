@@ -1,6 +1,8 @@
-library('reshape2')
-library('ggplot2')
-library('viridis')
+suppressPackageStartupMessages({
+  library('reshape2')
+  library('ggplot2')
+  library('viridis')
+})
 
 fig.save = function(name,...){
   fname = paste0(file.path('..','out','fig','sim',name),'.pdf')
@@ -8,10 +10,14 @@ fig.save = function(name,...){
   ggsave(fname,...)
 }
 
-plot.clean = function(g,dir=1,...){
+plot.clean = function(g,case,dir=1,...){
+  clr.args = list(
+    yss      = list(discrete=TRUE,option='viridis',direction=+1,begin=0,end=1),
+    partners = list(discrete=TRUE,option='inferno',direction=-1,begin=.1,end=.9)
+  )[[case]]
   g = g + theme_light() +
-    scale_color_viridis(discrete=TRUE,option='inferno',direction=dir,begin=.1,end=.9) +
-    scale_fill_viridis(discrete=TRUE,option='inferno',direction=dir,begin=.1,end=.9) +
+    do.call(scale_color_viridis,clr.args) +
+    do.call(scale_fill_viridis,clr.args) +
     theme(...,
       strip.background=element_rect(fill='gray85'),
       strip.text.x=element_text(color='black'),

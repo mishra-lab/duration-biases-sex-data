@@ -45,7 +45,7 @@ do.plot = function(X,X.ci){
     scale_x_continuous(trans='log10') +
     labs(x='Recall Period',y='Variable Value') +
     labs(color='Partnership\nDuration',fill='Partnership\nDuration',lty='')
-  g = plot.clean(g,dir=-1)
+  g = plot.clean(g,case='partners')
 }
 
 # main
