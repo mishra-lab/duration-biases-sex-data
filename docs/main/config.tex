@@ -20,18 +20,21 @@
 \graphicspath{{\rootpath/out/fig/tikz/}{\rootpath/out/fig/sim/}}
 % helpers
 \usepackage{xspace}
-\newcommand{\vs}{\emph{vs}\xspace}
-\newcommand{\eg}{\emph{e.g.,}\xspace}
-\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\vs}{{vs}\xspace}
+\newcommand{\eg}{{e.g.,}\xspace}
+\newcommand{\ie}{{i.e.,}\xspace}
 \newcommand{\shortquote}[1]{``\emph{#1}''}
 \newcommand{\sref}[1]{\S\,\ref{#1}\xspace}
 \newcommand{\rarr}{\ensuremath{\rightarrow}\xspace}
 \newcommand{\distr}[2]{\mathrm{#1}\,(#2)}
 \newcommand{\hreftt}[2][https://]{\href{#1#2}{\texttt{#2}}}
 \renewcommand{\paragraph}[1]{\par\textbf{#1.}\hskip.5em}
+\newcommand{\floatfoot}[2][1]{\nopagebreak\vskip\abovecaptionskip\par
+  \parbox{#1\linewidth}{\footnotesize#2}}
 % bib
 \usepackage[
-  style=numeric,
+  sorting=none,
+  style=numeric-comp,
   doi=false,
   eprint=false,
   isbn=false,
