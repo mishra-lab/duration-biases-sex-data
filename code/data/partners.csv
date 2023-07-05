@@ -1,0 +1,17 @@
+type,             x, p.raw, p.adj, p.025, p.975
+New Clients,     .5,  .146,  .164,  .098,  .230
+New Clients,      2,  .411,  .434,  .333,  .535
+New Clients,      3,  .185,  .152,  .096,  .209
+New Clients,      4,  .132,  .131,  .070,  .192
+New Clients,      5,  .126,  .118,  .060,  .176
+Regular Clients, .5,  .084,  .100,  .019,  .181
+Regular Clients,  2,  .078,  .085,  .032,  .138
+Regular Clients,  3,  .113,  .159,  .098,  .219
+Regular Clients,  4,  .110,  .100,  .045,  .156
+Regular Clients,  5,  .104,  .081,  .038,  .123
+Regular Clients,  6,  .104,  .107,  .058,  .155
+Regular Clients, 10,  .408,  .369,  .264,  .473
+Non-Paying,       0,  .117,  .125,  .048,  .201
+Non-Paying,       1,  .530,  .508,  .429,  .587
+Non-Paying,       2,  .232,  .236,  .168,  .303
+Non-Paying,       3,  .121,  .132,  .072,  .191
