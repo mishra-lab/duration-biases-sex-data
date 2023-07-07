@@ -50,7 +50,7 @@ yss = read.csv('data/yss.csv',strip.white=TRUE)
 yss$n = est.n(yss)
 X.s = do.sim(yss)
 X = data.frame(t(sapply(X.s,mci.named)))
-print(round(X,2)) # data for table
+print(round(X,2)) # TABLE
 X$adj = factor(rownames(X),levels=rownames(X))
 Xt = merge(X,list(t=seq(0,20,.1)))
 Xt$cdf.m  = 1 - exp( - Xt$t / Xt$m)

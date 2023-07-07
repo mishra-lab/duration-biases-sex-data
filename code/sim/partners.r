@@ -25,6 +25,7 @@ load.fsw = function(){
   }))
   X.p = merge(meta,X.p,all=TRUE)
   X = merge(meta,X,all=TRUE)
+  print(aggregate(x~type,X,mci.named)) # TABLE
   X$Q = X$x / (X$dur + X$recall)
   X$K = X$Q * X$dur
   plot.fit(X.p,X)
@@ -54,7 +55,7 @@ do.sim = function(X){
   X = do.call(rbind,par.lapply(X.g,function(X.gi){
     Q = X.gi$Q; dur = X.gi$dur; recall = X.gi$recall;
     Q.s = sapply(1:s,function(si){ do.call(x.sim,X.gi[si,]) }) / (dur+recall)
-    adj = list('uQ'=1, 'uK'=dur, 'bQ'=(dur+recall)/recall, 'bK'=(dur+recall))
+    adj = list('bQ'=(dur+recall)/recall, 'bK'=(dur+recall), 'uQ'=1, 'uK'=dur)
     Xgg = X.gi[rep(1,4),]
     Xgg$true   = sapply(adj,function(a){ mean(a*Q) })
     Xgg$sim.lo = sapply(adj,function(a){ quantile(a*Q.s,.025) })
@@ -62,7 +63,7 @@ do.sim = function(X){
     return(Xgg)
   }))
   # grouping vars
-  X$bias = rep(c('Unbiased','Biased'),each=2)
+  X$bias = rep(c('Biased','Unbiased'),each=2)
   X$var = factor(var.labs,levels=var.labs)
   rownames(X) = NULL
   return(X)
@@ -88,7 +89,8 @@ main.sens = function(){
 
 main.fsw = function(){
   X.fsw = do.sim(load.fsw())
-  # print(round(X.fsw[order(X.fsw$type,X.fsw$var),c('true','sim.lo','sim.hi')],2)) # TODO
+  print(unname(do.call(cbind,lapply(split(X.fsw,X.fsw$var),
+    function(X){ round(X[c('true','sim.lo','sim.hi')],2) })))) # TABLE
   g = ggplot(X.fsw,aes(x=bias,color=type)) +
     facet_grid('type~var',scales='free') +
     geom_point(aes(y=true),shape=1,size=1.5) +
@@ -100,4 +102,4 @@ main.fsw = function(){
 }
 
 # main.sens()
-# main.fsw()
+main.fsw()

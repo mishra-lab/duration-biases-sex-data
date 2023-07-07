@@ -44,7 +44,7 @@ plot.clean = function(g,case,dir=1,...){
     fit      = list(discrete=TRUE,option='viridis',direction=+1,begin=.5,end=1,name='Adjustment'),
     yss      = list(discrete=TRUE,option='viridis',direction=+1,begin=0, end=1, name='Adjustment'),
     dur      = list(discrete=TRUE,option='inferno',direction=-1,begin=.1,end=.9,name='Partnership\nDuration'),
-    dur.hide = list(discrete=TRUE,option='inferno',direction=-1,begin=.2,end=.8,guide='none')
+    dur.hide = list(discrete=TRUE,option='inferno',direction=-1,begin=.3,end=.7,guide='none')
   )[[case]]
   g = g + theme_light() +
     do.call(scale_color_viridis,clr.args) +
