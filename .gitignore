@@ -3,6 +3,7 @@
 .tmp/
 # code
 Rplots.pdf
+code/tikz/main.pdf
 # tex
 *.aux
 *.bbl
