@@ -1,7 +1,8 @@
 figs =
-figs += diag.group
-figs += diag.partners
-figs += diag.partner.types
+figs += diag.yss.censor
+figs += diag.yss.gaps
+figs += diag.partner.cases
+figs += diag.partner.recall
 all:
 	for fig in $(figs); do \
 	  ./maketikz.sh $$fig ;\

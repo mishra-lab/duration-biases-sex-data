@@ -2,7 +2,8 @@
 \begin{tikzpicture}[x=5mm,y=\baselineskip,unobs/.style={draw=#1!50}]
   \foreach \y/\dur/\n in {1/1/12,2/2/6,3/3/4,4/6/2,5/12/1}{
     \foreach \i in {1,...,\n}{
-      \partnership{\i*\dur-\dur+\y}{\dur}{\y}{red}
+      \partnership{\i*\dur-\dur+\y}{\dur}{\y}{yss}
     }}
-  \draw[blu,arrow] (\xri,0) node[below]{survey} -- (\xri,6);
+  \draw[surv,arrow] (\xri,0) node[below]{survey} -- (\xri,6);
+  \node[yss,anchor=east] at (17,1) {$\bar{D}_s = \frac12 \bar{D}$};
 \end{tikzpicture}
