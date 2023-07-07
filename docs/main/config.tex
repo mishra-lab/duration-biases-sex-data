@@ -1,6 +1,6 @@
 \usepackage{authblk}
-\usepackage[margin=40mm]{geometry}
-\usepackage{mathtools,newtxsf}
+\usepackage[margin=35mm]{geometry}
+\usepackage{mathtools,newtxsf,bm}
 \usepackage[sfdefault,osf,tabular]{gandhi}
 \usepackage[italic]{mathastext}
 \usepackage[scale=.8]{FiraMono}
@@ -23,12 +23,14 @@
 \newcommand{\vs}{{vs}\xspace}
 \newcommand{\eg}{{e.g.,}\xspace}
 \newcommand{\ie}{{i.e.,}\xspace}
+\newcommand{\ci}[1][95]{#1\%~CI\xspace}
+\newcommand{\g}[2]{#1: #2}
 \newcommand{\shortquote}[1]{``\emph{#1}''}
 \newcommand{\sref}[1]{\S\,\ref{#1}\xspace}
 \newcommand{\rarr}{\ensuremath{\rightarrow}\xspace}
 \newcommand{\distr}[2]{\mathrm{#1}\,(#2)}
 \newcommand{\hreftt}[2][https://]{\href{#1#2}{\texttt{#2}}}
-\renewcommand{\paragraph}[1]{\par\textbf{#1.}\hskip.5em}
+\renewcommand{\paragraph}[2][.]{\par\textbf{#2#1}\hskip.5em}
 \newcommand{\floatfoot}[2][1]{\nopagebreak\vskip\abovecaptionskip\par
   \parbox{#1\linewidth}{\footnotesize#2}}
 % bib
