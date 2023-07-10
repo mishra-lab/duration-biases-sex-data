@@ -3,7 +3,7 @@
 Full details of the FSW survey methodology are available in \cite{Yam2013}.
 Briefly, 328 women aged 15+
 who reported exchanging or selling sex for money, favors, or goods in the past 12 months
-were recruited via respondent-driven sampling (RDS) \cite{Heckathorn1997}.
+were recruited via respondent-driven sampling (RDS) \cite{Heckathorn1997}.   
 \begin{figure}
   \begin{subfigure}[b]{\textwidth}
     \centering\includegraphics[scale=1]{diag.yss.censor}
@@ -39,14 +39,14 @@ were recruited via respondent-driven sampling (RDS) \cite{Heckathorn1997}.
     \g{$x$}{number of reported partnerships}.}
 \end{figure}
 %===================================================================================================
-\subsection{Risk Group Duration}\label{meth.yss}
+\subsection{Risk Group Duration}\label{meth.yss} %SM: i really like the structure/subheading organizations - made it nice and easy to follow
 The FSW survey \cite{Baral2014} included questions about
 the current respondent's age and the age of first selling sex.
 The difference between these ages could be used to define a crude ``duration selling sex''.
 Using this approach, the median unadjusted duration among FSW in Eswatini was 4 years.
 However, this estimate can be improved by considering the following potential biases.
 \paragraph{Distribution}
-In compartmental transmission models,
+In compartmental transmission models, %SM: mention compartmental models in introduction. woudl the bias-adjustments only refer to compartmental models or also ABM? lets make it easier for reader so they don't ask this question while reading the methods part :) 
 durations are implicitly assumed to be exponentially distributed \cite{?}.
 This assumption was found to be reasonable here (see Figure~\ref{fig:yss.fit}),
 but the median of an exponential distribution is less than the mean
@@ -54,7 +54,7 @@ by a factor of $\distr{log}{2}$ due to skewness.
 Thus, the unadjusted mean duration could be estimated from the median as
 $\bar{D}_{s} = 4/\distr{log}{2} = 5.77$.
 \paragraph{Sampling}
-Sampling error was considered via RDS-adjustment in \cite{Baral2014},
+Sampling error was considered via RDS-adjustment in \cite{Baral2014},  %SM: agree with using RDS acronym b/c we have to keep saying RDS-adjusted (and also RDS is commonly used in general, topic-agnostic epi language),  but try to avoid using acronyms if possible - I think we should not not use FSW, for example. 
 yielding estimates of the proportions of FSW
 who had sold sex starting 0--2, 3--5, 6--10, and 11+ years ago.
 The adjusted proportions indicate fewer years selling sex \vs the unadjusted proportions,
@@ -65,12 +65,13 @@ Fitting an exponential distribution to the cumulative adjusted proportions
 yielded an estimated distribution mean $\bar{D}_s$ of 4.1 (\ci: 3.4,~4.9) years.
 % TODO: describe fitting methods (app)
 \paragraph{Censoring}
-The reported durations are right censored
-because almost all respondents will continue selling sex after the survey
+These crude durations are considered right censored %SM: for consitency and easier for reader, lets try to stick to same words (crude, etc.) throughout unless we meant something different by "reported"?
+because they only capture engagement in sex work up until data collection, and 
+thus do not include sex work that occurs after the time of data collection  %SM: rephrase to be less of a "definitive-sounding". 
 (Figure~\ref{fig:diag.yss.censor}) \cite{Fazito2012}.
 If we assume that the survey reaches FSW
 at a random time point during their total (eventual) duration selling sex $D$,
-then the duration reported in the survey is effectively $D_s \sim \distr{Unif}{0,D}$.
+then the duration reported in the survey can be effectively considered $D_s \sim \distr{Unif}{0,D}$.
 Thus, the mean duration reported in the survey is $\bar{D}_s = \frac12 \bar{D}$,
 and we can define $f = \bar{D} / \bar{D}_s = 2$,
 to give a further adjusted estimate as: $\bar{D} = f\bar{D}_s$.
@@ -78,12 +79,12 @@ In case the RDS-adjustment did not fully account for delayed self-identification
 we could use $f \sim \distr{Unif}{1.5,2}$, or similar.
 \paragraph{Measurement}
 Finally, FSW may not sell sex continuously.
-The 2011 survey did not ask whether respondents ever stopped selling sex,
-but a 2014 survey did, finding that $\phi = 45\%$ had stopped at least once \cite{EswKP2014}.
+The 2011 survey did not ask whether respondents ever stopped selling sex. 
+Other data from a 2014 survey of FSW in Eswatini suggest that $\phi = 45\%$ had stopped at least once \cite{EswKP2014}.  %SM: since  didn't talk about the 2014 survey in the methods/intro, so rephrase to say - other surveys/data indicate that... I would bring this up later in the paragraph - as its hard to follow which survey we are talking about in the next sentence?
 % TODO: not reported in EswKP2014
 Among the respondents who stopped, we have no further information about
 the proportion of the total period (\ie since first started selling sex)
-reflected in the current period (\ie since re-starting most recently).
+reflected in the current period (\ie since re-starting most recently). %SM: from which source? the 2011 or 2014 survey? 
 We denote this proportion $\rho$, and define the expected value for two extreme cases
 (Figure~\ref{fig:diag.yss.gaps} top and bottom):
 respondents were almost \emph{never} selling sex during the total period ($\rho = 0$), or
