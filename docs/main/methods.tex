@@ -121,7 +121,7 @@ we further assume that partnership durations were:
 4~months with regular paying clients, and
 3~years with non-paying partners.
 % TODO: cite?
-\paragraph{Sampling}
+\paragraph{Sampling}  %SM: fantastic figures! very clear
 RDS-adjusted proportions of respondents reporting different numbers of partners
 were drawn from \cite{Baral2014}.
 Following a similar approach as before (details in Appendix~\ref{app.partners}),
@@ -146,7 +146,7 @@ Both interpretations are reasonable under certain conditions:
 If partnership duration is short and the recall period is long ($\delta \ll \omega$),
 then reported partnerships mostly reflect \emph{complete} partnerships,
 and thus $x/\omega \approx Q$.
-If partnership duration is long and the recall period is short ($\delta \gg \omega$),
+If partnership duration is long and the recall period is short ($\delta \gg \omega$),  %SM: could we give an example to make it tangilble (e.g. 10 years, and 6 months in the context of FSW surveys,....)
 then reported partnerships mostly reflect \emph{ongoing} partnerships,
 and thus $x \approx K$.
 However, if partnership duration and recall period are similar in length ($\delta \approx \omega$),
@@ -156,21 +156,21 @@ These three cases are illustrated in Figure~\ref{fig:diag.partner.types}.
 Note that all estimates using \eqref{eq:bQK} are biased via this same mechanism,
 just that some biases are larger than others.
 \paragraph{Adjustment}
-To address this bias, we begin by assuming that survey timing is, as before,
+The bias-adjustment starts by first assuming that survey timing is
 effectively random with respect to the durations of interest.
 Then, if either end of the recall period would capture an ongoing partnership,
-the intersection point would be, on average, at the partnership mid-point.
-Thus, the recall period is effectively extended
+the intersection point would be, on average, at the partnership mid-point. %SM: rephrase for a bit more clarity / simplicty - may need to break down into 2 sentences...
+Thus, the recall period is extended
 by half the partnership duration $\delta/2$ on each end, and $\delta$ overall,
 as illustrated in Figure~\ref{fig:diag.partners}.
-As such, we can define unbiased estimators of $Q$ and $K$ as:
+We can then define unbiased estimators of $Q$ and $K$ as:
 \begin{subequations}\label{eq:uQK}
 \begin{alignat}{1}
   Q &= \frac{x}{\omega + \delta}\\
   K &= \frac{x \delta}{\omega + \delta} = Q \delta
 \end{alignat}
 \end{subequations}
-To further reflect uncertainty in these estimates [TODO].
+To further reflect uncertainty in these estimates [TODO]. %SM: have not reviewed this section yet
 % NOTE: current simulation is a bit circular and needs revision
 %       it does not actually calculate p(Q|x) but instead uses p(x|Q)
 %       see: https://stats.stackexchange.com/questions/620805
