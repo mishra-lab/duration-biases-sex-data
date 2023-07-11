@@ -1,0 +1,17 @@
+model{
+  # proportion strata
+  for (z in 1:N.z){
+    p.z[z] ~ dbeta(n.z[z]*p.sim[z], n.z[z]*(1-p.sim[z]))
+    p.sim[z] <- min(1-1e-6,max(1e-6,
+      mean((x.i > x.z[z]) && (x.i <= x.z[z+1]))))
+  }
+  # respondents
+  for (i in 1:N.i){
+    Q.i[i] ~ dexp(1/Q)
+    x.i[i] ~ dpois(Q.i[i]*recall.eff)
+  }
+  # globals
+  Q ~ dunif(0,1e3)
+  K <- Q * dur
+  x <- mean(x.i)
+}
