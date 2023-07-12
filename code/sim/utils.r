@@ -8,7 +8,7 @@ options(width=180)
 
 rename = setNames
 
-colors = c('yss'='#21908C','swo'='#F3771A','swr'='#BB3754','npp'='#6B186E')
+colors = list('yss'='#21908C','swo'='#F3771A','swr'='#BB3754','npp'='#6B186E')
 
 mci.named = function(x,pre='',rnd=Inf){
   mci = c(mean(x),quantile(x,c(.025,.975)))
@@ -58,18 +58,6 @@ p.sim.pop = function(X.s,keep=TRUE){
   X.s = X.s[b==keep,]
 }
 
-plot.p.sim = function(X.s,X,color='red'){
-  X$variable = X$lab
-  X.s = p.sim.pop(X.s,TRUE)
-  X.s$variable = factor(X.s$variable,labels=X$lab)
-  g = ggplot(X.s,aes(x=variable)) +
-    geom_violin(aes(y=value),fill=color,color=NA,alpha=.4) +
-    geom_point(data=X,aes(y=p.adj),color=color,shape=1) +
-    geom_errorbar(data=X,aes(ymin=p.025,ymax=p.975),color=color,size=.5,width=.2) +
-    labs(x='Value',y='Proportion')
-  g = plot.clean(g)
-}
-
 fig.save = function(name,...){
   fname = paste0(file.path('..','out','fig','sim',name),'.pdf')
   print(fname)
@@ -79,8 +67,8 @@ fig.save = function(name,...){
 plot.cmap = function(g,case,...){
   clr.args = list(
     yss  = list(option='viridis',direction=+1,begin=0, end=1,name='Adjustment'),
-    part = list(option='inferno',direction=-1,begin=.1,end=.9,name='Partnership\nDuration'),
-    grid = list(option='inferno',direction=-1,begin=.3,end=.7,guide='none')
+    grid = list(option='inferno',direction=-1,begin=.1,end=.9,name='Partnership\nDuration'),
+    part = list(option='inferno',direction=-1,begin=.3,end=.7,guide='none')
   )[[case]]
   clr.args = c(clr.args,list(discrete=TRUE,drop=FALSE))
   g = g + do.call(scale_color_viridis,clr.args) + do.call(scale_fill_viridis,clr.args)

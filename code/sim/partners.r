@@ -23,17 +23,30 @@ sim.fsw = function(X,N=328,bias='none'){
       recall.eff = recall.eff(1,durs[type]),
       N.i = N)
     X.s.i = run.jags('partners',data,vars,inits=list(Q=1))
-    if (bias=='None'){
-      g = plot.p.sim(X.s.i,cbind(X.i,value=X.i$x),color=colors[type])
-      fig.save(paste0('partners.fit.',type),h=2.5,w=1+.5*nrow(X.i)) }
-    X.s.i = cbind(p.sim.pop(X.s.i,FALSE),type=type,bias=bias)
+    X.s.i = cbind(X.s.i,type=type,bias=bias)
   }))
+  if (bias=='None'){
+    X.p = p.sim.pop(X.s)
+    X$lab = mapply(function(x,f){ s = strrep(' ',as.numeric(f)); paste0(s,x,s) },X$lab,X$type)
+    X$type = factor(X$type,levels=types,labels=names(types))
+    X.p$lab = factor(interaction(X.p$variable,X.p$type,drop=TRUE),labels=X$lab)
+    X.p$type = factor(X.p$type,levels=types,labels=names(types))
+    g = ggplot(X,aes(x=lab,color=type,fill=type)) +
+      facet_grid('~ type',scales='free',space='free') +
+      geom_violin(data=X.p,aes(y=value),lty=0,alpha=.4) +
+      geom_point(aes(y=p.adj),shape=1) +
+      geom_errorbar(aes(ymin=p.025,ymax=p.975),size=.5,width=.2) +
+      labs(x='Value',y='Proportion')
+    g = plot.clean(plot.cmap(g,'part'))
+    fig.save(paste0('partners.fit'),h=2.5,w=1+.3*nrow(X)) }
+  X.s = p.sim.pop(X.s,FALSE)
 }
 
 main.fsw = function(N=328){
   X = load.data('partners')
   X.s = do.call(rbind,par.lapply(c('None','Short','Long'),function(bias){
     sim.fsw(X,N=N,bias=bias) }))
+  q()
   # clean
   omit = (X.s$variable=='Q' & X.s$bias=='Long')  |
          (X.s$variable=='K' & X.s$bias=='Short') |
@@ -41,7 +54,7 @@ main.fsw = function(N=328){
   X.s = X.s[!omit,]
   # table data
   X.mci = aggregate(value~variable+type+bias,X.s,mci.named,rnd=2)
-  # print(X.mci[order(X.mci$variable,X.mci$type),])
+  print(X.mci[order(X.mci$variable,X.mci$type),])
   # clean + plot
   X.s$variable = factor(X.s$variable,labels=names(vars))
   X.s$type = factor(X.s$type,labels=names(types))
@@ -51,7 +64,7 @@ main.fsw = function(N=328){
     geom_violin(aes(fill=type),color=NA,alpha=.6) +
     geom_point(aes(color=type),stat='summary',fun=median,shape=1) +
     labs(x='Bias',y='Variable Value')
-  g = plot.clean(plot.cmap(g,'grid'),legend.position='top')
+  g = plot.clean(plot.cmap(g,'part'),legend.position='top')
   fig.save('partners.fsw',w=6,h=6)
 }
 
@@ -70,9 +83,9 @@ main.grid = function(Q=1){
     scale_y_continuous(trans='log10') +
     scale_x_continuous(trans='log10') +
     labs(x='Recall Period',y='Variable Value',lty='Assumption')
-  g = plot.clean(plot.cmap(g,'part'))
+  g = plot.clean(plot.cmap(g,'grid'))
   fig.save('partners.grid',w=6,h=3)
 }
 
-main.fsw(100)
+main.fsw()
 main.grid()
