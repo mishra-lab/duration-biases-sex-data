@@ -1,0 +1,7 @@
+      \rho_z &\sim \distr{BAB}{N_z, \bar{\rho}_z} \\
+\bar{\rho}_z &=    \distr{mean}{d_i > d_{z-1} \mathrm{~and~} d_i \le d_z} \\
+         d_i &=    D_i(f_i+r_i) \\
+         D_i &\sim \distr{Exp}{1/\bar{D}} \\
+         f_i &\sim \distr{Unif}{1/4,1} \\
+         r_i &\sim \distr{Pois}{\bar{r}} \\
+        \phi &\sim \distr{BAB}{N, e^{-\bar{r}}\,}
