@@ -1,0 +1,23 @@
+\begin{tikzpicture}[x=1em,y=3em,arrow/.append style={->}]
+  \rvs[fix]{uQa} {-4,5}{U}{0}
+  \rvs[fix]{uQb} { 0,5}{U}{0}
+  \rvs[aim]{Qa}  {-4,4}{$\alpha$}{0}
+  \rvs[aim]{Qb}  { 0,4}{$\beta$}{0}
+  \rvs[fix]{rec} {-6,3}{$\,\omega'$}{0}
+  \rvs[med]{Qi}  {-2,3}{$Q_i$}{\Ni}
+  \rvs[med]{xi}  {-4,2}{$x_i$}{\Ni}
+  \rvs[fix]{dz}  { 0,2}{$x_z$}{\Nz}
+  \rvs[gen]{rhom}{-2,1}{$\bar{\rho}_z$}{\Nz}
+  \rvs[fix]{Nz}  {+2,1}{$N_z$}{\Nz}
+  \rvs[obs]{rhoz}{ 0,0}{$\rho_z$}{\Nz}
+  \draw[arrow] (uQb)  -- (Qb);
+  \draw[arrow] (Qb)   -- (Qi);
+  \draw[arrow] (uQa)  -- (Qa);
+  \draw[arrow] (Qa)   -- (Qi);
+  \draw[arrow] (Qi)   -- (xi);
+  \draw[arrow] (rec)  -- (xi);
+  \draw[arrow] (xi)   -- (rhom);
+  \draw[arrow] (dz)   -- (rhom);
+  \draw[arrow] (Nz)   -- (rhoz);
+  \draw[arrow] (rhom) -- (rhoz);
+\end{tikzpicture}

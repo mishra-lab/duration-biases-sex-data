@@ -3,7 +3,7 @@
 \usepackage[tabular,osf,sfdefault]{gandhi}
 \usepackage[italic]{mathastext}
 \usepackage{xfp}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta,calc}
 % colours
 \definecolor{surv}{HTML}{ff9900}
 \definecolor{yss} {HTML}{21908C}
@@ -11,12 +11,25 @@
 \definecolor{npp} {HTML}{6B186E}
 \definecolor{swr} {HTML}{BB3754}
 \definecolor{swo} {HTML}{F3771A}
+\definecolor{aim}{HTML}{cc0066}
+\definecolor{obs}{HTML}{00cc99}
+\definecolor{gen}{HTML}{0066cc}
+\definecolor{fix}{HTML}{666666}
+\definecolor{med}{HTML}{660099}
 % styles
 \tikzset{
   > = latex,
   arrow/.style = {
     line width = .5mm,
     draw = #1,
+  },
+  rv/.style = {
+    circle,
+    draw = #1!60,
+    fill = #1!20,
+    inner sep = 0pt,
+    outer sep = 0pt,
+    minimum width = 2em,
   },
   unobs/.style = {#1!40},
   partx/.style = {very thick},
@@ -38,3 +51,9 @@
   \else % fully observedd
     \draw[partb,#4] (\xpi,#3) -- (\xpo,#3);
   \fi\fi}
+% random variables
+\newcommand{\rvs}[5][]{
+  \foreach \i in {-#5,...,0}{
+    \node[rv=#1] (#2) at ($(#3)+(\i pt,-\i pt)$) {#4};}}
+\newcommand{\Ni}{4}
+\newcommand{\Nz}{2}
