@@ -3,20 +3,21 @@ model{
   for (z in 1:N.z){
     p.z[z] ~ dbeta(n.z[z]*p.sim[z], n.z[z]*(1-p.sim[z]))
     p.sim[z] <- min(1-1e-6,max(1e-6,
-      mean((D.obs.i > D.z[z]) && (D.obs.i <= D.z[z+1]))))
+      mean((d.i > d.z[z]) && (d.i <= d.z[z+1]))))
   }
   # respondents
   for (i in 1:N.i){
     D.i[i] ~ dexp(1/D)
     f.i[i] ~ dunif(1/4,1)
-    R.i[i] ~ dpois(R)
-    D.obs.i[i] <- min(D.max, D.i[i]
-      * ifelse(adj.cens,f.i[i],1)
-      * ifelse(adj.stop,1+R.i[i],1))
+    r.i[i] ~ dpois(r)
+    d.i[i] <- min(d.max, D.i[i] * (
+      ifelse(adj.cens,f.i[i],1) +
+      ifelse(adj.stop,r.i[i],0)
+    ))
   }
   # globals
-  D ~ dunif(0,D.max)
-  R ~ dunif(0,5)
+  D ~ dunif(0,d.max)
+  r ~ dunif(0,5)
   p.stop ~ dbeta(N.i*u.stop, N.i*(1-u.stop))
-  u.stop <- min(1-1e-6,max(1e-6,mean(R.i > 0)))
+  u.stop <- min(1-1e-6,max(1e-6,exp(-r)))
 }

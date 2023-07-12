@@ -14,14 +14,14 @@ adj.labs = list(
 
 sim.fsw = function(X,N=328,adj='all'){
   data = list(
-    D.z = c(-1,X$yss),
+    d.z = c(-1,X$yss),
     p.z = X$p.adj,
     n.z = X$n,
     N.z = nrow(X),
     adj.cens = adjs[[adj]]$adj.cens,
     adj.stop = adjs[[adj]]$adj.stop,
     p.stop = .45,
-    D.max = 35,
+    d.max = 35,
     N.i = N)
   X.s = run.jags('yss',data,'D',inits=list(D=1))
   if (adj=='all'){
@@ -63,4 +63,4 @@ main.fsw = function(N=328){
   fig.save('yss.adj',w=5,h=3)
 }
 
-main.fsw(100)
+main.fsw()
