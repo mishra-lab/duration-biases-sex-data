@@ -7,11 +7,13 @@ model{
   }
   # respondents
   for (i in 1:N.i){
-    Q.i[i] ~ dexp(1/Q)
+    Q.i[i] ~ dgamma(shape,rate)
     x.i[i] ~ dpois(Q.i[i]*recall.eff)
   }
   # globals
-  Q ~ dunif(0,1e3)
+  shape ~ dunif(0,1e3)
+  rate ~ dunif(0,1e3)
+  Q <- shape / rate
   K <- Q * dur
   x <- mean(x.i)
 }

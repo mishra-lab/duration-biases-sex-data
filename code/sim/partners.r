@@ -22,7 +22,7 @@ sim.fsw = function(X,N=328,bias='none'){
       dur = durs[type],
       recall.eff = recall.eff(1,durs[type]),
       N.i = N)
-    X.s.i = run.jags('partners',data,vars,inits=list(Q=1))
+    X.s.i = run.jags('partners',data,vars,inits=list(shape=1,rate=1))
     X.s.i = cbind(X.s.i,type=type,bias=bias)
   }))
   if (bias=='None'){
@@ -46,7 +46,6 @@ main.fsw = function(N=328){
   X = load.data('partners')
   X.s = do.call(rbind,par.lapply(c('None','Short','Long'),function(bias){
     sim.fsw(X,N=N,bias=bias) }))
-  q()
   # clean
   omit = (X.s$variable=='Q' & X.s$bias=='Long')  |
          (X.s$variable=='K' & X.s$bias=='Short') |
