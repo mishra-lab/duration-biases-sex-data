@@ -2,13 +2,14 @@ suppressPackageStartupMessages({
   library('reshape2')
   library('ggplot2')
   library('viridis')
+  library('GGally')
   library('rjags')
 })
 options(width=180)
 
 rename = setNames
 
-colors = list('yss'='#21908C','swo'='#F3771A','swr'='#BB3754','npp'='#6B186E')
+N = list(i=100,adapt=1e4,iter=1e4)
 
 mci.named = function(x,pre='',rnd=Inf){
   mci = c(mean(x),quantile(x,c(.025,.975)))
@@ -37,38 +38,44 @@ par.lapply = function(...,cores=7){
 }
 
 melt.samples = function(samples){
-  X.s = do.call(rbind,lapply(samples,function(s){ melt(data.frame(s),id=NULL) }))
+  X.s = do.call(rbind,lapply(samples,function(s){
+    cbind(melt(data.frame(s),id=NULL),i=1:nrow(s)) }))
 }
 
-run.jags = function(name,data,vars,...){
+run.jags = function(name,data,vars,inits=NULL){
   file = file.path('sim',paste0(name,'.jags'))
   model = jags.model(
     file = file,
     data = data,
-    quiet = TRUE,
-    ...)
+    inits = inits,
+    n.adapt = N$adapt,
+    quiet = TRUE)
   X.s = melt.samples(coda.samples(
-    variable.names = c(vars,'p.sim'),
-    n.iter = 1e3,
-    model = model))
+    model = model,
+    variable.names = c('rho.z',vars),
+    n.iter = N$iter))
 }
 
-p.sim.pop = function(X.s,keep=TRUE){
-  b = grepl('^p\\.sim\\.\\d\\.$',X.s$variable)
-  X.s = X.s[b==keep,]
+rho.split = function(X.s,keep='other'){
+  X.s = rename(split(X.s,list(grepl('^rho\\.z\\.\\d\\.$',X.s$variable))),c('var','rho'))
+}
+
+fig.name = function(name){
+  fname = paste0(file.path('..','out','fig','sim',name),'.pdf')
 }
 
 fig.save = function(name,...){
-  fname = paste0(file.path('..','out','fig','sim',name),'.pdf')
+  fname = fig.name(name)
   print(fname)
   ggsave(fname,...)
 }
 
 plot.cmap = function(g,case,...){
   clr.args = list(
-    yss  = list(option='viridis',direction=+1,begin=0, end=1,name='Adjustment'),
-    grid = list(option='inferno',direction=-1,begin=.1,end=.9,name='Partnership\nDuration'),
-    part = list(option='inferno',direction=-1,begin=.3,end=.7,guide='none')
+    yss      = list(option='viridis',direction=+1,begin=0, end=1,name='Adjustment'),
+    yss.fit  = list(option='viridis',direction=+1,begin=.4,end=1,name='Adjustment'),
+    grid     = list(option='inferno',direction=-1,begin=.1,end=.9,name='Partnership\nDuration'),
+    part.fit = list(option='inferno',direction=-1,begin=.3,end=.7,name='Assumption')
   )[[case]]
   clr.args = c(clr.args,list(discrete=TRUE,drop=FALSE))
   g = g + do.call(scale_color_viridis,clr.args) + do.call(scale_fill_viridis,clr.args)

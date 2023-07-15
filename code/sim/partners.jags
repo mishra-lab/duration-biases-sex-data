@@ -1,19 +1,19 @@
 model{
   # proportion strata
   for (z in 1:N.z){
-    p.z[z] ~ dbeta(n.z[z]*p.sim[z], n.z[z]*(1-p.sim[z]))
-    p.sim[z] <- min(1-1e-6,max(1e-6,
+    p.z[z] ~ dbeta(n.z[z]*rho.z[z], n.z[z]*(1-rho.z[z]))
+    rho.z[z] <- min(1-eps,max(eps,
       mean((x.i > x.z[z]) && (x.i <= x.z[z+1]))))
   }
   # respondents
   for (i in 1:N.i){
-    Q.i[i] ~ dgamma(shape,rate)
+    Q.i[i] ~ dgamma(Q.shape,Q.rate)
     x.i[i] ~ dpois(Q.i[i]*recall.eff)
   }
   # globals
-  shape ~ dunif(0,1e3)
-  rate ~ dunif(0,1e3)
-  Q <- shape / rate
-  K <- Q * dur
+  Q.shape ~ dunif(0,1e3)
+  Q.rate ~ dunif(0,1e3)
   x <- mean(x.i)
+  Q <- Q.shape / Q.rate
+  K <- Q * dur
 }
