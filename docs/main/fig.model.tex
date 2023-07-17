@@ -1,0 +1,38 @@
+\begin{figure}[h]
+  \begin{subfigure}{\textwidth}
+    \begin{minipage}{.5\textwidth}
+      \centering\includegraphics[scale=1]{model.yss}
+    \end{minipage}
+    \begin{minipage}{.5\textwidth}
+      \begin{align}
+           p_z &\sim \distr{BAB}{N_z, \hat{\rho}_z} \\
+  \hat{\rho}_z &=    \distr{mean}{d_i \in \mathbb{d}_z} \\
+           d_i &=    D_i\,(f_i + s_i\,(1 + g_i)) \\
+           D_i &\sim \distr{Exp}{1/\bar{D}} \\
+           f_i &\sim \distr{Unif}{0,1} \\
+           s_i &\sim \distr{Pois}{\bar{s}} \\
+           g_i &\sim \distr{Exp}{1/\bar{g}} \\
+          \phi &\sim \distr{BAB}{N, 1-e^{-\bar{s}}\,}
+      \end{align}
+    \end{minipage}
+    \caption{Duration selling sex}
+    \label{fig:model.yss}
+  \end{subfigure}
+  \begin{subfigure}{\textwidth}
+    \begin{minipage}{.5\textwidth}
+      \centering\includegraphics[scale=1]{model.part}
+    \end{minipage}
+    \begin{minipage}{.5\textwidth}
+      \begin{align}
+           p_z &\sim \distr{BAB}{N_z, \hat{\rho}_z} \\
+  \hat{\rho}_z &=    \distr{mean}{x_i \in \mathbb{x}_z} \\
+           x_i &\sim \distr{Pois}{Q_i\,\omega'} \\
+           Q_i &\sim \distr{Gamma}{\alpha,\beta}
+      \end{align}
+    \end{minipage}
+    \caption{Rates of partnership change}
+    \label{fig:model.part}
+  \end{subfigure}
+  \caption{Graphical models}
+  \floatfoot{TODO}
+\end{figure}

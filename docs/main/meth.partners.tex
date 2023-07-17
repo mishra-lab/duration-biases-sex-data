@@ -1,0 +1,82 @@
+%---------------------------------------------------------------------------------------------------
+\paragraph{Data \& Assumptions}
+The survey \cite{Baral2014} also asked respondents to report
+their numbers of sexual partners ($x$) in a recall period ($\omega$) of $30$ days.
+Numbers were stratified by three types of partner:
+new paying clients, regular paying clients, and non-paying partners.
+We assume that
+only a small proportion of new clients go on to become regular clients;
+thus, we conceptualize ``new'' clients as effectively ``one-off'' clients.%
+\footnote{The number of new clients per recall period
+  could also be used to define a rate of partnership change \cite{Fazito2012},
+  but we do not explore this approach here.}
+Since no survey questions asked about partnership durations ($\delta$),
+we further assume that these were:
+1~day with new paying clients,
+4~months with regular paying clients, and
+3~years with non-paying partners.
+We now develop the generative model to estimate
+the expected rate of partnership change for each type,
+considering the following potential biases.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Sampling}
+As before, \cite{Baral2014} estimates RDS-adjusted proportions of respondents $p_z$ (mean, \ci)
+reporting different numbers/ranges of partners $\mathbb{x}_z$ in the past 30 days
+(Table~\ref{tab:data}).
+Thus, we take the same approach as in \sref{meth.yss}
+to identify distributions of reported partner numbers $x_i$
+which are consistent with the data for each partnership type.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Interpretation}
+Numbers of reported partners ($x$) have generally been interpreted in two ways ---
+$x/\omega$ as the \emph{rate} of partnership change ($Q$) or
+$x$ as the \emph{number} of current partners ($K$):
+\begin{subequations}\label{eq:bQK}
+\begin{alignat}{1}
+  Q &\approx \frac{x}{\omega}\\
+    &\text{or} \nonumber\\
+  K &\approx x
+\end{alignat}
+\end{subequations}
+Both interpretations are reasonable under certain conditions:
+If partnership duration is short and the recall period is long ($\delta \ll \omega$),
+then reported partnerships mostly reflect \emph{complete} partnerships,
+and thus $x/\omega \approx Q$.
+If partnership duration is long and the recall period is short ($\delta \gg \omega$),
+% SM: could we give an example to make it tangilble
+%     (e.g. 10 years, and 6 months in the context of FSW surveys,....)
+then reported partnerships mostly reflect \emph{ongoing} partnerships,
+and thus $x \approx K$.
+However, if partnership duration and recall period are similar in length ($\delta \approx \omega$),
+then reported partnerships reflect a mixture of tail-ends, complete, and ongoing partnerships,
+and thus $x/\omega$ overestimates $Q$, but $x$ also overestimates $K$.
+These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}.
+% All estimates using \eqref{eq:bQK} are thus biased,
+% but the magnitude depends on the chosen interpretation and
+% ratio of partnership duration~$\delta$ to recall period~$\omega$.
+\par
+To adjust for this bias, we again assume that survey/recall period timing is effectively random.
+Then, if the \emph{end} of the recall period would intersect an ongoing partnership,
+the intersection point would be, on average, half-way through the partnership.
+The same goes for the \emph{start} of the recall period.
+Thus, the recall period is effectively extended by
+half the partnership duration $\delta/2$ on each end, and $\delta$ overall,
+as illustrated in Figure~\ref{fig:diag.partner.recall}.
+We can therefore define unbiased estimators of $Q$ and $K$ as:
+\begin{subequations}\label{eq:uQK}
+\begin{alignat}{1}
+  Q &= \frac{x}{\omega + \delta}\\
+  K &= \frac{x \delta}{\omega + \delta} = Q \delta
+\end{alignat}
+\end{subequations}
+Returning to the generative model, we sample the true rate of partnership change
+from an assumed distribution $Q_i \sim \distr{Gamma}{\alpha,\beta}$,
+with unknown parameters $\alpha, \beta$.
+Then, we model the numbers of reported partners $x_i$ given $Q_i, \omega, \delta$ as
+$x_i \sim \distr{Poi}{Q (\omega + \delta)}$.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Summary}
+Figure~\ref{fig:model.part} summarizes the proposed model graphically.
+The primary parameters of interest are $\alpha, \beta$, which govern
+the distribution of rates of partnership change (for a given type) $Q$.
+We assume uninformative priors for these 2 parameters.

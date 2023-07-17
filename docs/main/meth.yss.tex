@@ -1,0 +1,81 @@
+%---------------------------------------------------------------------------------------------------
+\paragraph{Crude Estimates}
+The survey \cite{Baral2014} included questions about
+the current respondent's age and the age of first selling sex.
+The difference between these ages could be used to define a crude ``duration selling sex''.
+Using this approach, the crude median duration was $\tilde{d} = 4$ years.
+However, if durations are assumed to be exponentially distributed
+--- a implicit assumption in compartmental models \cite{Anderson1991} ---
+then the crude mean could be estimated from the crude median as
+$\bar{d} = \tilde{d}/\distr{log}{2}$ due to skewness.
+Moving beyond crude estimates, we now develop the generative model
+considering the following potential biases.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Sampling}
+Sampling bias was considered via RDS-adjustment in \cite{Baral2014},
+yielding mean and \ci estimates of the proportions of women $p_z$
+who had sold sex starting $\mathbb{d}_z \in \{0{-}2, 3{-}5, 6{-}10, 11+\}$ years ago
+(Table~\ref{tab:data}).
+% The adjusted proportions indicate fewer years selling sex \vs the unadjusted proportions,
+% which would be consistent with
+% challenges in reaching women in the first year(s) of sex work \cite{Cheuk2020}.
+% TODO: ^ move to discussion?
+We define a model to identify distributions of reported durations $d_i$
+which are consistent with these data.
+We model each proportion $p_z$ as a random variable with
+a beta approximation of binomial (BAB) distribution (see Appendix~\ref{app.bab})
+having parameters $N_z$ and $\rho_z$.
+We model each $N_z$ as a fixed value,
+which we fit to the \ci of $p_z$ as described in \sref{app.bab}.
+We then model each $\rho_z$ as
+the proportion of reported durations $d_i$ within the interval $\mathbb{d}_z$.
+Since these proportions are difficult to define analytically,
+we estimate $\hat{\rho}_z = \distr{mean}{d_i \in \mathbb{d}_z}$ from $N = 328$ samples.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Censoring}
+These reported durations $d_i$ are effectively right censored
+because they only capture engagement in sex work up until the survey, and
+and not additional sex work after the survey
+(Figure~\ref{fig:diag.yss.censor}) \cite{Fazito2012}.
+If we assume that the survey reaches women at a random time point
+during their total (eventual) duration selling sex $D_i$, we can model this censoring via
+a random fraction $f_i \sim \distr{Unif}{0,1}$, such that $d_i = f_i D_i$.
+The expected means are then related by $\bar{d} / \bar{D} = \bar{f} = \frac12$.
+If we believe that the sampling adjustment above does not fully account for
+delays in self-identifying as a sex worker \cite{Cheuk2020},
+we could instead use $f_i \sim \distr{Unif}{1/4,1}$, or similar.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Measurement}
+Finally, women may not sell sex continuously.
+Reported durations $d_i$ may therefore include
+multiple periods of selling sex with gaps in between,
+whereas we aim to model $D_i$ as the durations of individual periods selling sex.
+Respondents in \cite{Baral2014} were not asked whether they ever stopped selling sex,
+but a later survey \cite{EswKP2014} indicated that $\phi = 45\%$ had stopped at least once.
+We model the number of times a woman stopped selling sex as
+a Poisson-distributed random variable $s_i$ with mean~$\bar{s}$.
+The expected value of $\phi$ given $\bar{s}$ is then $\distr{P}{s > 0} = 1 - e^{-\bar{s}}$.
+Since $\phi = 45\%$ is an imperfect observation,
+we model $\phi$ as a random variable with a BAB distribution
+having parameters $N = 328$ and $\rho = 1 - e^{-\bar{s}}$,
+which allows inference on $\bar{s}$ given $\phi$.
+\par
+Next, we update the model for reported durations as $d_i = D_i\,(f_i + s_i\,(1 + g_i))$,
+where $g_i$ is the relative duration of gaps between selling sex,
+with the following rationale.
+If $s_i = 0$, then $d_i = f_i D_i$ as before, reflecting the censored current period only.
+If $s_i > 0$, then $d_i$ also includes $s_i$ prior periods selling sex and the gaps between them
+(Figure~\ref{fig:diag.yss.gaps}) --- \ie $s_i\,(D_i + g_i D_i) = D_i\,s_i\,(1 + g_i)$.
+The major assumption we make here is that
+all successive periods are of equal length, and likewise for gaps between them.
+We must also assume a distribution for $g_i$, for which we choose
+$g_i \sim \distr{Exp}{1/\bar{g}}$.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Summary}
+Figure~\ref{fig:model.yss} summarizes the proposed model graphically.
+The primary parameter of interest is
+the mean duration selling sex (for a given period) $\bar{D}$,
+but we must also infer
+the mean number of times women stop selling sex $\bar{s}$, and
+the mean relative duration of gaps $\bar{g}$.
+We assume uninformative priors for these 3 parameters.

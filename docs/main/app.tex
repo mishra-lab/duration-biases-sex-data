@@ -1,13 +1,25 @@
 \section{Supplement}
-All analysis code is available online at:
+%===================================================================================================
+\subsection{Data \& Code}\label{app.data}
+Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}.
+All analysis code is available online at:\\
 \hreftt{github.com/mishra-lab/duration-bias}
+\begin{table}[h]
+  \centering
+  \caption{RDS-adjusted proportions for variables}
+  \input{tab.data}
+  \label{tab:data}
+  \floatfoot{
+    \tnt[a]{Number reported in the past 30 days.}
+    Data from \cite{Baral2014}.}
+\end{table}
 %===================================================================================================
 \subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}
 The distributions of RDS-adjusted variables in \cite{Baral2014} were reported as
-frequency tables with variable values and adjusted proportions (mean, \ci).
+adjusted proportions (mean, \ci) for different variable value strata.
 For each proportion, we defined a beta approximation of the binomial (BAB) distribution:
 \begin{alignat}{1}\label{eq:bab}
-  p(\rho) &=
+  \distr{P}{\rho} &=
     \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\,\Gamma(\beta)}\,
     \rho^{\alpha-1}{(1 - \rho)}^{\beta-1} \\
     &\approx {N \choose n} \, \rho^{n}{(1 - \rho)}^{N - n} \nonumber
@@ -19,27 +31,11 @@ the 95\% quantiles of \eqref{eq:bab} given $N$ and the reported \ci for the adju
 %===================================================================================================
 \subsection{Risk Group Duration}\label{app.yss}
 %---------------------------------------------------------------------------------------------------
-\paragraph{Fitted Exponential}
-We fit an exponential distribution (\ie estimated $\lambda$) to the RDS-adjusted proportions for
-``years selling sex'' in \cite{Baral2014} by
-maximizing the overall likelihood (product of individual likelihoods) across BAB distributions,
-where each proportion was defined as:
-\begin{equation}
-  \rho_i = F(t_i) - F(t_{i-1}), \quad F(t) = 1 - e^{-\lambda t}
-\end{equation}
-Figure~\ref{fig:yss.fit} illustrates the resulting cumulative distribution \vs
-the target cumulative proportions.
+\paragraph{Fitting to RDS-Adjusted Proportions}
 \begin{figure}[h]
-	\centering\includegraphics[scale=.8]{yss.fit}
-  \caption{Estimated cumulative exponential distribution for years selling sex,
-    fitted to RDS-adjusted proportions}
-	\label{fig:yss.fit}
-  \floatfoot{Guide:
-    \g{circles}{mean adjusted cumulative proportions $\rho_i$ selling sex for $y_i$ years},
-    \g{bars}{\ci for $\rho_i$},
-    \g{line}{exponential distributon estimate},
-    \g{shaded ribbon}{\ci}.
-    Data from \cite{Baral2014}}
+  \centering\includegraphics[scale=.8]{yss.fit}
+  \caption{TODO}
+  \floatfoot{TODO}
 \end{figure}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Numeric Summary}
@@ -50,37 +46,18 @@ for years selling sex following each stage of adjustment outlined in \sref{meth.
   \caption{Estimated mean durations selling sex (years) following each stage of adjustment}
   \input{tab.yss}
   \label{tab:yss.adj}
-  \floatfoot{Data from \cite{Baral2014}.}
 \end{table}
 %===================================================================================================
 \subsection{Rate of Partnership Change}\label{app.partners}
 %---------------------------------------------------------------------------------------------------
-\paragraph{Mean Reported Partners}
-We repeated the following for each partnership type
-(new paying clients, regular paying clients, and non-paying partners).
-We estimated the mean number of reported partners $\bar{x}$ as a weighted average
-of the reported partners $x_i$ with the RDS-adjusted proportions $\rho_i$:
-\begin{equation}\label{eq:x.bar}
-  \bar{x} = \sum\nolimits_i \rho_i x_i
-\end{equation}
-To capture uncertainty in the proportions $\rho_i$,
-we fitted a BAB distribution (\ie estimated $N_i$) in each case, as described in \sref{app.bab}.
-Then, we randomly sampled sets of $\rho$,
-normalized these sets by the sum (such that $\sum_i \rho_i = 1$), and
-re-calculated $\bar{x}$ for each set.
-Figure~\ref{fig:partners.fit} illustrates
-the resulting uncertainty distributions for $\bar{x}$,
-along with the corresponding $x_i$.
+\paragraph{Fitting to RDS-Adjusted Proportions}
 \begin{figure}[h]
-  \includegraphics[width=\textwidth]{partners.fit}
-  \caption{Distributions of numbers of reported partners in the past 30 days}
-  \label{fig:partners.fit}
-  \floatfoot{Guide:
-    \g{circles}{mean adjusted proportions $\rho_i$ reporting $x_i$ partners},
-    \g{bars}{\ci for $\rho_i$},
-    \g{shaded area}{empiric distribution of $\bar{x}$}.
-    Data from \cite{Baral2014}.}
+  \centering\includegraphics[scale=.8]{partners.fit}
+  \caption{TODO}
+  \floatfoot{TODO}
 \end{figure}
+%---------------------------------------------------------------------------------------------------
+\paragraph{Numeric Summary}
 \begin{table}[h]
   \centering
   \caption{Biased \vs unbiased estimates of
@@ -88,5 +65,5 @@ along with the corresponding $x_i$.
     for three partnership types reported by female sex workers}
   \input{tab.partners.fsw}
   \label{tab:partners.fsw}
-  \floatfoot{Rares are per-month. Data from \cite{Baral2014}.}
+  \floatfoot{Rares are per-month.}
 \end{table}
