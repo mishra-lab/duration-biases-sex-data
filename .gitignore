@@ -1,6 +1,7 @@
 # general
 .old/
 .tmp/
+.rdata/
 # code
 Rplots.pdf
 code/tikz/main.pdf
