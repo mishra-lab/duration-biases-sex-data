@@ -18,7 +18,7 @@ plot.fit = function(X,X.s){
     geom_errorbar(aes(ymin=p.025,ymax=p.975),lwd=.5,width=.2) +
     labs(x='Value',y='Proportion')
   g = plot.clean(plot.cmap(g,'part.fit'))
-  fig.save(paste0('partners.fit'),h=2.5,w=3+.3*nrow(X))
+  fig.save(paste0('parts.fit'),h=2.5,w=3+.3*nrow(X))
 }
 
 plot.fsw = function(X.s){
@@ -31,7 +31,7 @@ plot.fsw = function(X.s){
     geom_point(aes(color=bias),stat='summary',fun=median,shape=1) +
     labs(x='Assumption',y='Value')
   g = plot.clean(plot.cmap(g,'part.fit'),legend.position='top')
-  fig.save('partners.fsw',w=4,h=6)
+  fig.save('parts.fsw',w=4,h=6)
 }
 
 sim.fsw = function(X,bias='none'){
@@ -51,14 +51,14 @@ sim.fsw = function(X,bias='none'){
       dur = durs[type],
       recall.eff = recall.eff(1,durs[type]),
       eps = 1e-6)
-    X.s.i = run.jags('partners',data,vars,list(Q.shape=1,Q.rate=1))
+    X.s.i = run.jags('parts',data,vars,list(Q.shape=1,Q.rate=1))
     X.s.i = cbind(X.s.i,type=type,bias=bias)
   }))
 }
 
 main.fsw = function(){
-  X = load.data('partners')
-  X.s = run.fresh('partners',
+  X = load.data('parts')
+  X.s = run.fresh('parts',
     do.call(rbind,par.lapply(biases,function(bias){ sim.fsw(X,bias=bias) })))
   plot.fit(X,rho.split(X.s)$rho)
   X.s = X.s[!(X.s$variable=='Q' & X.s$bias=='Long')  &
@@ -80,7 +80,7 @@ plot.grid = function(X.b){
     scale_linetype_manual(values=c('solid','21','42')) +
     labs(x='Recall Period',y='Variable Value',lty='Assumption')
   g = plot.clean(plot.cmap(g,'grid'))
-  fig.save('partners.grid',w=6,h=3)
+  fig.save('parts.grid',w=6,h=3)
 }
 
 main.grid = function(Q=1){
