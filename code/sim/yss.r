@@ -68,7 +68,8 @@ sim.fsw = function(X,adj='all'){
 
 main.fsw = function(){
   X = load.data('yss')
-  X.s = do.call(rbind,par.lapply(names(adjs),function(adj){ sim.fsw(X,adj) }))
+  X.s = run.fresh('yss',
+    do.call(rbind,par.lapply(names(adjs),function(adj){ sim.fsw(X,adj) })))
   plot.samples(rho.split(X.s)$var)
   plot.fit(X,rho.split(X.s)$rho)
   D.s = X.s[X.s$variable=='D',]
@@ -77,5 +78,4 @@ main.fsw = function(){
   plot.cdf(rbind(D.u,D.s),t=seq(0,20,.1))
 }
 
-set.seed(0)
 main.fsw()

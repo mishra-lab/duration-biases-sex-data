@@ -7,9 +7,10 @@ suppressPackageStartupMessages({
 })
 options(width=180)
 
-rename = setNames
+N = list(i=10,adapt=1e3,iter=1e4,seed=0)
+fresh = FALSE
 
-N = list(i=100,adapt=1e4,iter=1e4)
+rename = setNames
 
 mci.named = function(x,pre='',rnd=Inf){
   mci = c(mean(x),quantile(x,c(.025,.975)))
@@ -37,12 +38,8 @@ par.lapply = function(...,cores=7){
   parallel::mclapply(...,mc.cores=cores,mc.set.seed=FALSE)
 }
 
-melt.samples = function(samples){
-  X.s = do.call(rbind,lapply(samples,function(s){
-    cbind(melt(data.frame(s),id=NULL),i=1:nrow(s)) }))
-}
-
 run.jags = function(name,data,vars,inits=NULL){
+  set.seed(N$seed)
   file = file.path('sim',paste0(name,'.jags'))
   model = jags.model(
     file = file,
@@ -56,12 +53,24 @@ run.jags = function(name,data,vars,inits=NULL){
     n.iter = N$iter))
 }
 
+melt.samples = function(samples){
+  X.s = do.call(rbind,lapply(samples,function(s){
+    cbind(melt(data.frame(s),id=NULL),i=1:nrow(s)) }))
+}
+
 rho.split = function(X.s,keep='other'){
   X.s = rename(split(X.s,list(grepl('^rho\\.z\\.\\d\\.$',X.s$variable))),c('var','rho'))
 }
 
+run.fresh = function(name,run){
+  uid = paste0(names(N),N,collapse='_')
+  fname = file.path('data','.rdata',paste0('Xs_',name,'_',uid,'.rdata'))
+  if (fresh){ X.s = run; saveRDS(X.s,fname) } else { X.s = readRDS(fname) }
+  return(X.s)
+}
+
 fig.name = function(name){
-  fname = paste0(file.path('..','out','fig','sim',name),'.pdf')
+  fname = file.path('..','out','fig','sim',paste0(name,'.pdf'))
 }
 
 fig.save = function(name,...){

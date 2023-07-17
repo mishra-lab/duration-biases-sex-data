@@ -58,7 +58,8 @@ sim.fsw = function(X,bias='none'){
 
 main.fsw = function(){
   X = load.data('partners')
-  X.s = do.call(rbind,par.lapply(biases,function(bias){ sim.fsw(X,bias=bias) }))
+  X.s = run.fresh('partners',
+    do.call(rbind,par.lapply(biases,function(bias){ sim.fsw(X,bias=bias) })))
   plot.fit(X,rho.split(X.s)$rho)
   X.s = X.s[!(X.s$variable=='Q' & X.s$bias=='Long')  &
             !(X.s$variable=='K' & X.s$bias=='Short') &
