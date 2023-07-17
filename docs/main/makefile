@@ -4,7 +4,7 @@ tex:
 	pdflatex main
 bib:
 	biber main
-wc:
-	detex intro methods results discuss | wc
+words:
+	python3 wc/wc.py
 clean:
 	texclean .
