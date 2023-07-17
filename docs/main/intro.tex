@@ -1,27 +1,26 @@
-\section{Introduction} %SM: this is good! after you revise, can I look at the intro & discussion once agaiin quickly before we submit?
-Epidemic modeling of sexually transmitted infections (STI) relies on 
-quantifying inputs (parameters) surrounding sexual behaviour in the transmission model \cite{Fenton2001}.
-When developing mathematical models of STI transmission in the context of risk heterogeneity (i.e.
-subgroups experience differential risks),  
-two important paramteters are:  %SM: nice and succint!
-the duration of time within a ``risk group'' , and
+\section{Introduction}
+% SM: this is good! after you revise, can I look at the intro & discussion once agaiin quickly before we submit?
+Epidemic modelling of sexually transmitted infections (STI) relies on
+quantification of sexual behaviour for model inputs (parameters) \cite{Garnett2002}.
+In models of STI transmission with risk heterogeneity
+--- \ie considering subgroups that experience differential risks ---
+two important paramteters are:
+the duration of time within a ``risk group'', and
 the rate of sexual partnership formation, possibly stratified by partnership type
-\cite{Garnett1996,Stigum1997,Henry2015,Knight2020}.
-For example, in the context of sex work, parameters on duration of time engaged in sex work 
-are used in the transmission model to... %SM; but would add/say something like this here for  both things, to make it easier for a reader who is not familiar with STI/HIV modeling per se...
-
-Data to inform these important parameters largely come from cross-sectional studies. 
-Furthermore, the data are often 
-only available as crude aggregate estimates
-from previously published studies (\vs individual-level data).
-Whether available as individual-level or aggregate, crude estimates may be subject to  %SM: b/c your solutions apply to individual-level data too, yes? though I am comfortable with removing the first edit re "whether avialbale as individual or aggregate,..." - since can put that line/consideration into the discussion section?
-distributional, sampling, censoring, and measurement biases.
+\cite{Garnett1996,Stigum1997,Watts2010,Knight2020}.
+For example, the average duration of time engaged in sex work
+can be used to define the modelled rate of ``turnover'' among sex workers \cite{Watts2010}.
+Similarly, the numbers of main, casual, transactional, and/or paying sexual partners per year
+can be used to define the modelled rate of infection incidence \cite{Boily2015}.
 \par
-Our aim is therefore to motivate and develop bias adjuments for estimating: %SM: why is "to motivate" an aim? not sure I followed that part?
+Data to inform these parameters largely come from cross-sectional studies,
+and are often only available as crude aggregate estimates (\vs individual-level data).
+Such estimates may be subject to distributional, sampling, censoring, and measurement biases.
+Our aim is therefore to develop bias adjuments for estimating:
 \begin{enumerate}
   \item duration in a risk group
   \item rate of partnership change
 \end{enumerate}
-from aggregate cross-sectional survey data, considering these factors.  %SM: in the discussion, state that can/should use these approaches when using individual-level data too :) 
+from aggregate cross-sectional survey data, considering these factors.
 We explore these topics using aggregate estimates from
-a 2011 FSW survey in Eswatini~\cite{Baral2014}.
+a 2011 female sex worker survey in Eswatini~\cite{Baral2014}.
