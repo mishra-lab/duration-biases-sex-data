@@ -1,35 +1,37 @@
 \begin{tikzpicture}[x=1em,y=3em,arrow/.append style={->}]
   \rvs[fix]{N}   {+5,4}{$N$}{0}
-  \rvs[fix]{usm} {+1,5}{U}{0}
-  \rvs[gen]{sm}  {+1,4}{$\sigma$}{0}
   \rvs[obs]{phi} {+3,3}{$\phi$}{0}
+  \rvs[fix]{usm} {+1,5}{U}{0}
+  \rvs[aim]{sm}  {+1,4}{$\bar{s}$}{0}
   \rvs[med]{si}  { 0,3}{$s_i$}{\Ni}
-  \rvs[fix]{ufi} {-9,4}{U\hskip1pt*}{0}
-  \rvs[med]{fi}  {-9,3}{$f_i$}{\Ni}
+  \rvs[fix]{ugm} {-3,5}{U}{0}
+  \rvs[aim]{gm}  {-3,4}{$\bar{g}$}{0}
+  \rvs[med]{gi}  {-3,3}{$g_i$}{\Ni}
   \rvs[fix]{uDm} {-6,5}{U}{0}
   \rvs[aim]{Dm}  {-6,4}{$\bar{D}$}{0}
   \rvs[med]{Di}  {-6,3}{$D_i$}{\Ni}
-  \rvs[fix]{ug}  {-3,4}{U\hskip1pt*}{0}
-  \rvs[med]{gi}  {-3,3}{$g_i$}{\Ni}
+  \rvs[fix]{ufi} {-9,4}{U\hskip1pt*}{0}
+  \rvs[med]{fi}  {-9,3}{$f_i$}{\Ni}
   \rvs[med]{di}  {-4,2}{$d_i$}{\Ni}
   \rvs[fix]{dz}  { 0,2}{$\mathbb{d}_z$}{\Nz}
-  \rvs[gen]{rhoz}{-2,1}{$\hat{\rho}_z$}{\Nz}
+  \rvs[emp]{rhoz}{-2,1}{$\hat{\rho}_z$}{\Nz}
   \rvs[fix]{Nz}  {+2,1}{$N_z$}{\Nz}
-  \rvs[obs]{pz}{ 0,0}{$p_z$}{\Nz}
+  \rvs[obs]{pz}  { 0,0}{$p_z$}{\Nz}
   \draw[arrow] (N)    -- (phi);
-  \draw[arrow] (usm)  -- (sm);
   \draw[arrow] (sm)   -- (phi);
+  \draw[arrow] (usm)  -- (sm);
   \draw[arrow] (sm)   -- (si);
-  \draw[arrow] (uDm)  -- (Dm);
-  \draw[arrow] (ug)   -- (gi);
+  \draw[arrow] (si)   -- (di);
+  \draw[arrow] (ugm)  -- (gm);
+  \draw[arrow] (gm)   -- (gi);
   \draw[arrow] (gi)   -- (di);
+  \draw[arrow] (uDm)  -- (Dm);
   \draw[arrow] (Dm)   -- (Di);
   \draw[arrow] (Di)   -- (di);
   \draw[arrow] (ufi)  -- (fi);
   \draw[arrow] (fi)   -- (di);
-  \draw[arrow] (si)   -- (di);
   \draw[arrow] (di)   -- (rhoz);
   \draw[arrow] (dz)   -- (rhoz);
-  \draw[arrow] (Nz)   -- (pz);
   \draw[arrow] (rhoz) -- (pz);
+  \draw[arrow] (Nz)   -- (pz);
 \end{tikzpicture}
