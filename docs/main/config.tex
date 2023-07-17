@@ -8,16 +8,18 @@
 \DisableLigatures{shape=sc}
 % spacing
 \usepackage[onehalfspacing]{setspace}
+\usepackage[marginal,bottom]{footmisc}
 \frenchspacing
 \setlength{\parskip}{1ex}
 \setlength{\parindent}{0ex}
 \setlength{\abovecaptionskip}{\medskipamount}
 \setlength{\belowcaptionskip}{\medskipamount}
+\addtolength{\skip\footins}{2ex plus 1ex minus 1ex}
 \usepackage{enumitem}\setlist{itemsep=0pt,topsep=0pt}
 % floats
 \usepackage{graphicx,subcaption,booktabs,multicol}
 \def\rootpath{../..}
-\graphicspath{{\rootpath/out/fig/tikz/}{\rootpath/out/fig/sim/}}
+\graphicspath{{\rootpath/out/fig/tikz/}{\rootpath/out/fig/sim/100/}}
 % helpers
 \usepackage{xspace}
 \newcommand{\vs}{{vs}\xspace}
@@ -30,9 +32,11 @@
 \newcommand{\rarr}{\ensuremath{\rightarrow}\xspace}
 \newcommand{\distr}[2]{\mathrm{#1}\,(#2)}
 \newcommand{\hreftt}[2][https://]{\href{#1#2}{\texttt{#2}}}
-\renewcommand{\paragraph}[2][.]{\par\textbf{#2#1}\hskip.5em}
+\renewcommand{\paragraph}[1]{\par\textbf{#1.}\hskip.5em}
 \newcommand{\floatfoot}[2][1]{\nopagebreak\vskip\abovecaptionskip\par
   \parbox{#1\linewidth}{\footnotesize#2}}
+\newcommand{\tn}[1]{\rlap{\textsuperscript{\,#1}}}
+\newcommand{\tnt}[2][]{\textsuperscript{#1\,}#2}
 % bib
 \usepackage[
   sorting=none,
@@ -44,8 +48,9 @@
   natbib=true,
 ]{biblatex}
 \addbibresource{/home/jesse/refs/library.bib}
-\usepackage[colorlinks,citecolor=magenta]{hyperref}
+\usepackage[colorlinks,citecolor=magenta,linkcolor=cyan]{hyperref}
 \renewcommand{\bibfont}{\small}
+\setlength{\bibitemsep}{0pt}
 % appendix
 \let\xappendix\appendix
 \renewcommand{\appendix}{\xappendix
