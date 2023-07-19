@@ -22,18 +22,20 @@
 \graphicspath{{\rootpath/out/fig/tikz/}{\rootpath/out/fig/sim/100/}}
 % helpers
 \usepackage{xspace}
+\newlength{\wdigit}\setlength{\wdigit}{\widthof{0}}
 \newcommand{\vs}{{vs}\xspace}
 \newcommand{\eg}{{e.g.,}\xspace}
 \newcommand{\ie}{{i.e.,}\xspace}
 \newcommand{\ci}[1][95]{#1\%~CI\xspace}
 \newcommand{\g}[2]{#1: #2}
+\newcommand{\w}{\hspace{\wdigit}}
 \newcommand{\shortquote}[1]{``\emph{#1}''}
 \newcommand{\sref}[1]{\S\,\ref{#1}\xspace}
 \newcommand{\rarr}{\ensuremath{\rightarrow}\xspace}
 \newcommand{\distr}[2]{\mathrm{#1}\,(#2)}
 \newcommand{\hreftt}[2][https://]{\href{#1#2}{\texttt{#2}}}
 \renewcommand{\paragraph}[1]{\par\textbf{#1.}\hskip.5em}
-\newcommand{\floatfoot}[2][1]{\nopagebreak\vskip\abovecaptionskip\par
+\newcommand{\floatfoot}[2][1]{\nopagebreak\par
   \parbox{#1\linewidth}{\footnotesize#2}}
 \newcommand{\tn}[1]{\rlap{\textsuperscript{\,#1}}}
 \newcommand{\tnt}[2][]{\textsuperscript{#1\,}#2}
@@ -49,6 +51,7 @@
 ]{biblatex}
 \addbibresource{/home/jesse/refs/library.bib}
 \usepackage[colorlinks,citecolor=magenta,linkcolor=cyan]{hyperref}
+\DeclareFieldFormat{url}{\url{#1}}
 \renewcommand{\bibfont}{\small}
 \setlength{\bibitemsep}{0pt}
 % appendix

@@ -8,7 +8,7 @@ However, if durations are assumed to be exponentially distributed
 --- a implicit assumption in compartmental models \cite{Anderson1991} ---
 then the crude mean could be estimated from the crude median as
 $\bar{d} = \tilde{d}/\distr{log}{2}$ due to skewness.
-Moving beyond crude estimates, we now develop the generative model
+To move beyond crude estimates, next we develop the generative model,
 considering the following potential biases.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Sampling}
@@ -20,7 +20,7 @@ who had sold sex starting $\mathbb{d}_z \in \{0{-}2, 3{-}5, 6{-}10, 11+\}$ years
 % which would be consistent with
 % challenges in reaching women in the first year(s) of sex work \cite{Cheuk2020}.
 % TODO: ^ move to discussion?
-We define a model to identify distributions of reported durations $d_i$
+We start by defining a model to identify distributions of reported durations $d_i$
 which are consistent with these data.
 We model each proportion $p_z$ as a random variable with
 a beta approximation of binomial (BAB) distribution (see Appendix~\ref{app.bab})
@@ -30,7 +30,7 @@ which we fit to the \ci of $p_z$ as described in \sref{app.bab}.
 We then model each $\rho_z$ as
 the proportion of reported durations $d_i$ within the interval $\mathbb{d}_z$.
 Since these proportions are difficult to define analytically,
-we estimate $\hat{\rho}_z = \distr{mean}{d_i \in \mathbb{d}_z}$ from $N = 328$ samples.
+we estimate $\hat{\rho}_z = \distr{mean}{d_i \in \mathbb{d}_z}$ from $N = 100$ samples.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Censoring}
 These reported durations $d_i$ are effectively right censored
@@ -69,7 +69,7 @@ If $s_i > 0$, then $d_i$ also includes $s_i$ prior periods selling sex and the g
 The major assumption we make here is that
 all successive periods are of equal length, and likewise for gaps between them.
 We must also assume a distribution for $g_i$, for which we choose
-$g_i \sim \distr{Exp}{1/\bar{g}}$.
+$g_i \sim \distr{Exp}{1/\bar{g}}$, arbitrarily.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Summary}
 Figure~\ref{fig:model.yss} summarizes the proposed model graphically.

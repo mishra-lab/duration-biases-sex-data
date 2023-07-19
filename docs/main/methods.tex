@@ -10,10 +10,8 @@ were recruited via respondent-driven sampling (RDS) \cite{Heckathorn1997}.
 We conceptualize bias adjustments to the given data using Bayesian generative models
 --- \ie we define explicit distributions for the unbiased data and mechanisms of bias,
 and infer the parameters of these distributions based on the available data,
-using Gibbs sampling \cite{Geman1984}.%
-\footnote{We use JAGS: \hreftt{mcmc-jags.sourceforge.io}
-  via rjags: \hreftt{cran.r-project.org/package=rjags}.}
-Implementation details are given in Appendix~\ref{app.data}.
+using Gibbs sampling \cite{Geman1984}.
+Implementation details are given in Appendix~\ref{app.code}.
 \input{fig.diag}
 %===================================================================================================
 \subsection{Duration Selling Sex}\label{meth.yss}
@@ -23,11 +21,3 @@ Implementation details are given in Appendix~\ref{app.data}.
 %===================================================================================================
 \subsection{Rates of Partnership Change}\label{meth.parts}
 \input{meth.parts}
-%===================================================================================================
-\subsection{Experiment}\label{meth.exp}
-% TODO
-% To illustrate more general trends in the magnitude of bias,
-% we further compared biased \vs unbiased estimates of $Q$ and $K$ across
-% a range of different partnership durations $\delta \in [0.1, 10]$ and
-% recall periods $\omega \in [0.1, 10]$,
-% with fixed true rate $Q = 1$ (arbitrary units).

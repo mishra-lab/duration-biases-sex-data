@@ -1,29 +1,29 @@
 \section{Supplement}
 %===================================================================================================
-\subsection{Data \& Code}\label{app.data}
+\subsection{Source Data}\label{app.data}
 Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}.
-All analysis code is available online at:\\
-\hreftt{github.com/mishra-lab/duration-bias}
 \begin{table}[h]
   \centering
-  \caption{RDS-adjusted proportions for variables}
-  \input{tab.data}
+  \caption{RDS-adjusted proportions for variables of interest}
   \label{tab:data}
-  \floatfoot{
-    \tnt[a]{Number reported in the past 30 days.}
-    Data from \cite{Baral2014}.}
+  \input{tab.data}
 \end{table}
+%===================================================================================================
+\subsection{Code}\label{app.code}
+All analysis code is available online at: \hreftt{github.com/mishra-lab/duration-bias}.\\
+We fit the generative models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
+with 1000 adaptive iterations and 100,000 sampling iterations.
 %===================================================================================================
 \subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}
 The distributions of RDS-adjusted variables in \cite{Baral2014} were reported as
 adjusted proportions (mean, \ci) for different variable value strata.
 For each proportion, we defined a beta approximation of the binomial (BAB) distribution:
-\begin{alignat}{1}\label{eq:bab}
+\begin{align}\label{eq:bab}
   \distr{P}{\rho} &=
     \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\,\Gamma(\beta)}\,
     \rho^{\alpha-1}{(1 - \rho)}^{\beta-1} \\
     &\approx {N \choose n} \, \rho^{n}{(1 - \rho)}^{N - n} \nonumber
-\end{alignat}
+\end{align}
 with $\alpha = N\,\rho$ and $\beta = N\,(1-\rho)$.
 We fixed $\rho$ as the adjusted point estimate,
 and estimated $N$ by minimizing the sum of squared differences between
@@ -32,10 +32,16 @@ the 95\% quantiles of \eqref{eq:bab} given $N$ and the reported \ci for the adju
 \subsection{Risk Group Duration}\label{app.yss}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Fitting to RDS-Adjusted Proportions}
+Figure~\ref{fig:yss.fit} illustrates
+the observed \vs inferred proportions of women reporting
+different durations selling sex,
+following each stage of adjustment outlined in \sref{meth.yss}.
 \begin{figure}[h]
   \centering\includegraphics[scale=.8]{yss.fit}
-  \caption{TODO}
-  \floatfoot{TODO}
+  \caption{Proportions of women reporting different durations selling sex:
+    observed (points and ranges) \vs inferred posterior (coloured regions)
+    after 3 stages of adjustment}
+  \label{fig:yss.fit}
 \end{figure}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Numeric Summary}
@@ -44,26 +50,34 @@ for years selling sex following each stage of adjustment outlined in \sref{meth.
 \begin{table}[h]
   \centering
   \caption{Estimated mean durations selling sex (years) following each stage of adjustment}
-  \input{tab.yss}
   \label{tab:yss.adj}
+  \input{tab.yss}
 \end{table}
 %===================================================================================================
 \subsection{Rate of Partnership Change}\label{app.parts}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Fitting to RDS-Adjusted Proportions}
+Figure~\ref{fig:parts.fit} illustrates
+the observed \vs inferred proportions of women reporting
+different numbers of partners in the past 30 days,
+under each partnership duration assumption outlined in \sref{meth.parts}.
 \begin{figure}[h]
   \centering\includegraphics[scale=.8]{parts.fit}
-  \caption{TODO}
-  \floatfoot{TODO}
+  \caption{Proportions of women reporting different numbers of partner in the past 30 days:
+    observed (points and ranges) \vs inferred posterior (coloured regions)
+    under different partnership duration assumptions}
+  \label{fig:parts.fit}
 \end{figure}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Numeric Summary}
+Table~\ref{tab:parts.fsw} summarizes the means (\ci) for
+rates of partnership change and numbers of current partners
+estimated under each partnership duration assumption outlined in \sref{meth.parts}.
 \begin{table}[h]
   \centering
   \caption{Biased \vs unbiased estimates of
     rates of partnership change and numbers of current partners
-    for three partnership types reported by female sex workers}
-  \input{tab.parts.fsw}
+    for three partnership types}
   \label{tab:parts.fsw}
-  \floatfoot{Rares are per-month.}
+  \input{tab.parts.fsw}
 \end{table}
