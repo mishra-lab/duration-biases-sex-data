@@ -1,5 +1,5 @@
 import os,re
-docs = ['intro','methods','meth.yss','meth.partners','results','discuss']
+docs = ['intro','methods','meth.yss','meth.parts','results','discuss']
 igs = [
   '(?<!\\\\)%.*',
   '\\\\(par|item|floatfoot|clearpage)',
