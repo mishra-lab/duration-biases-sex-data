@@ -17,7 +17,7 @@ vars = c('D','S','G')
 plot.fit = function(X,X.s){
   X.s$lab = factor(X.s$variable,labels=X$lab)
   g = ggplot(X,aes(x=lab)) +
-    geom_violin(data=X.s,aes(y=value,fill=adj),lty=0,alpha=.4,position='identity') +
+    geom_violin(data=X.s,aes(y=value,fill=adj),lty=0,alpha=.4,adjust=3,position='identity') +
     geom_point(aes(y=p.adj),shape=1) +
     geom_errorbar(aes(ymin=p.025,ymax=p.975),lwd=.5,width=.2) +
     labs(x='Value',y='Proportion')
@@ -31,7 +31,9 @@ plot.samples = function(X.s){
     aes(color=adj,fill=adj),columns=c('i',vars),
     upper = list(continuous=wrap('density',alpha=0,contour_var='ndensity',bins=7)),
     diag  = list(continuous=wrap('densityDiag',alpha=.2)),
-    lower = list(continuous=wrap('points',alpha=.2,size=.1)))
+    lower = list(continuous=function(data,mapping){ ggplot(data,mapping) +
+      geom_hex(aes(alpha=after_stat(count)),color=NA) +
+      scale_alpha_continuous(range=c(0,1)) }))
   g = plot.clean(plot.cmap(g,'yss.fit'))
   print(g); dev.off()
 }
@@ -71,11 +73,13 @@ main.fsw = function(){
   X.s = run.fresh('yss',
     do.call(rbind,par.lapply(names(adjs),function(adj){ sim.fsw(X,adj) })))
   plot.samples(rho.split(X.s)$var)
+  q()
   plot.fit(X,rho.split(X.s)$rho)
   D.s = X.s[X.s$variable=='D',]
   print(aggregate(value~variable+adj,D.s,mci.named,rnd=2))
   D.u = data.frame(variable='D',value=c(4,4/log(2)),i=1,adj=c(adj.labs$med,adj.labs$mean))
-  plot.cdf(rbind(D.u,D.s),t=seq(0,20,.1))
+  D.s = rbind(D.u,D.s); D.s$adj = factor(D.s$adj,adj.labs)
+  plot.cdf(D.s,t=seq(0,20,.1))
 }
 
 main.fsw()

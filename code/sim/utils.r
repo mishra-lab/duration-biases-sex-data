@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
 })
 options(width=180)
 
-N = list(i=10,adapt=1e3,iter=1e4,seed=0)
+N = list(i=100,adapt=1e3,iter=1e5,seed=0)
 fresh = FALSE
 
 rename = setNames

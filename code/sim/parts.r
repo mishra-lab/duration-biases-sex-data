@@ -13,12 +13,12 @@ plot.fit = function(X,X.s){
   X.s$type = factor(X.s$type,levels=types,labels=names(types))
   g = ggplot(X,aes(x=lab)) +
     facet_grid('~ type',scales='free',space='free') +
-    geom_violin(data=X.s,aes(y=value,fill=bias),lty=0,alpha=.4,position='identity') +
+    geom_violin(data=X.s,aes(y=value,fill=bias),lty=0,alpha=.4,adjust=3,position='identity') +
     geom_point(aes(y=p.adj),shape=1) +
     geom_errorbar(aes(ymin=p.025,ymax=p.975),lwd=.5,width=.2) +
     labs(x='Value',y='Proportion')
-  g = plot.clean(plot.cmap(g,'part.fit'))
-  fig.save(paste0('parts.fit'),h=2.5,w=3+.3*nrow(X))
+  g = plot.clean(plot.cmap(g,'part.fit'),legend.position='top')
+  fig.save(paste0('parts.fit'),h=3.5,w=2+.3*nrow(X))
 }
 
 plot.fsw = function(X.s){
@@ -27,7 +27,7 @@ plot.fsw = function(X.s){
   g = ggplot(X.s,aes(x=bias,y=value)) +
     facet_grid('type ~ variable',scales='free',space='free_x') +
     scale_y_continuous(trans='log10') +
-    geom_violin(aes(fill=bias),color=NA,alpha=.6) +
+    geom_violin(aes(fill=bias),color=NA,alpha=.6,adjust=3) +
     geom_point(aes(color=bias),stat='summary',fun=median,shape=1) +
     labs(x='Assumption',y='Value')
   g = plot.clean(plot.cmap(g,'part.fit'),legend.position='top')
@@ -36,9 +36,9 @@ plot.fsw = function(X.s){
 
 sim.fsw = function(X,bias='none'){
   recall.eff = function(recall,dur){ list(
-    'Long'=dur,
-    'Short'=recall,
-    'None'=recall+dur
+    'Long'  = dur,
+    'Short' = recall,
+    'None'  = recall+dur
   )[[bias]] }
   X.s = do.call(rbind,par.lapply(types,function(type){
     X.i = X[X$type==type,]
