@@ -1,5 +1,3 @@
-\usepackage{authblk}
-\usepackage[margin=35mm]{geometry}
 \usepackage{mathtools,newtxsf,bm}
 \usepackage[sfdefault,osf,tabular]{gandhi}
 \usepackage[italic]{mathastext}
@@ -40,25 +38,8 @@
 \newcommand{\tn}[1]{\rlap{\textsuperscript{\,#1}}}
 \newcommand{\tnt}[2][]{\textsuperscript{#1\,}#2}
 % bib
-\usepackage[
-  sorting=none,
-  style=numeric-comp,
-  doi=false,
-  eprint=false,
-  isbn=false,
-  url=true,
-  natbib=true,
-]{biblatex}
 \addbibresource{/home/jesse/refs/library.bib}
 \usepackage[colorlinks,citecolor=magenta,linkcolor=cyan]{hyperref}
 \DeclareFieldFormat{url}{\url{#1}}
 \renewcommand{\bibfont}{\small}
 \setlength{\bibitemsep}{0pt}
-% appendix
-\let\xappendix\appendix
-\renewcommand{\appendix}{\xappendix
-  \renewcommand*{\thepage}{A.\arabic{page}}
-  \counterwithin{table}{section}
-  \counterwithin{figure}{section}
-  \counterwithin{equation}{section}
-  \clearpage\setcounter{page}{1}}
