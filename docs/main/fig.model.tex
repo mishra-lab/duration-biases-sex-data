@@ -34,5 +34,37 @@
     \label{fig:model.part}
   \end{subfigure}
   \caption{Graphical models}
-  \floatfoot{TODO}
+  \label{fig:model}
+  \floatfoot{Guide:
+    \g{gray}{fixed variable/distribution};
+    \g{red}{target};
+    \g{purple}{intermediate};
+    \g{blue}{observed}.
+    Variables:
+    % both
+    \g{$p_z$}{proportion of population};
+    \g{$N_z$}{effective sample size};
+    \g{$\hat{\rho}_z$}{empirically estimated $p_z$ mean};
+    % yss
+    \g{$\mathbb{d}_z$}{range of reported durations selling sex};
+    \g{$d_i$}{reported duration at survey};
+    \g{$D_i$}{total (eventual) duration};
+    \g{$f_i$}{censoring fraction};
+    \g{$s_i$}{number of times stopped selling sex};
+    \g{$g_i$}{relative gap length};
+    \g{$\bar{D}$}{true $D$ mean};
+    \g{$\bar{s}$}{true $s$ mean};
+    \g{$\bar{g}$}{true $g$ mean};
+    \g{$\phi$}{proportion who stopped selling sex at least once};
+    % parts
+    \g{$\mathbb{x}$}{range of reported partner numbers};
+    \g{$x_i$}{reported partner numbers};
+    \g{$Q_i$}{partnership change rate};
+    \g{$\omega'$}{effective recall period};
+    \g{$\alpha,\beta$}{parameters of $Q_i$ distribution}.
+    % misc
+    Distributions:
+    \g{U}{uniform / uninformative};
+    \g{BAB}{beta approximation of binomial distribution (see \sref{app.bab})}.
+  }
 \end{figure}
