@@ -55,9 +55,12 @@ These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}.
 % but the magnitude depends on the chosen interpretation and
 % ratio of partnership duration~$\delta$ to recall period~$\omega$.
 \par
+% TODO: f_i should be a RV in the model ...
 To adjust for this bias, we again assume that survey/recall period timing is effectively random.
 Then, if the \emph{end} of the recall period would intersect an ongoing partnership,
-the intersection point would be, on average, half-way through the partnership.
+then a random fraction $f_i \sim \distr{Unif}{0,1}$ of the partnership duration $\delta$
+would be outside the recall period.
+As in before, the expected value $\bar{f} = \frac12$.
 The same goes for the \emph{start} of the recall period.
 Thus, the recall period is effectively extended by
 half the partnership duration $\delta/2$ on each end, and $\delta$ overall,
