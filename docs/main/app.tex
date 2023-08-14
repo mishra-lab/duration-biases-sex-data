@@ -14,9 +14,9 @@ All analysis code is available online at: \hreftt{github.com/mishra-lab/duration
 We fit the generative models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
 with 1000 adaptive iterations and 100,000 sampling iterations.
 %===================================================================================================
-\subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}
+\subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}  
 The distributions of RDS-adjusted variables in \cite{Baral2014} were reported as
-adjusted proportions (mean, \ci) for different variable value strata.
+adjusted proportions (mean, \ci) for different variable value strata.  %SM: thiis part not super clear re: different variable value strata...
 For each proportion, we defined a beta approximation of the binomial (BAB) distribution:
 \begin{align}\label{eq:bab}
   \distr{P}{\rho} &=
@@ -35,8 +35,8 @@ the 95\% quantiles of \eqref{eq:bab} given $N$ and the reported \ci for the adju
 Figure~\ref{fig:yss.fit} illustrates
 the observed \vs inferred proportions of women reporting
 different durations selling sex,
-following each stage of adjustment outlined in \sref{meth.yss}.
-\begin{figure}[h]
+following each stage of adjustment outlined in \sref{meth.yss}. 
+\begin{figure}[h] %SM: nice 
   \centering\includegraphics[scale=.8]{yss.fit}
   \caption{Proportions of women reporting different durations selling sex:
     observed (points and ranges) \vs inferred posterior (coloured regions)
@@ -72,7 +72,7 @@ under each partnership duration assumption outlined in \sref{meth.parts}.
 \paragraph{Numeric Summary}
 Table~\ref{tab:parts.fsw} summarizes the means (\ci) for
 rates of partnership change and numbers of current partners
-estimated under each partnership duration assumption outlined in \sref{meth.parts}.
+estimated under each partnership duration assumption outlined in \sref{meth.parts}. %SM: nice
 \begin{table}[h]
   \centering
   \caption{Biased \vs unbiased estimates of
