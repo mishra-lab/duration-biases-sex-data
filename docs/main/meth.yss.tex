@@ -7,8 +7,8 @@ Using this approach, the crude median duration was $\tilde{d} = 4$ years.
 However, if durations are assumed to be exponentially distributed
 --- a implicit assumption in compartmental models \cite{Anderson1991} ---
 then the crude mean could be estimated from the crude median as
-$\bar{d} = \tilde{d}/\distr{log}{2}$ due to skewness.
-To move beyond crude estimates, next we develop the generative model,
+$\bar{d} = \tilde{d}/\distr{log}{2}$ due to skewness.  %SM: nicely explained
+To move beyond crude estimates, next we develop the generative model, %SM, maybe explain or reference "generative model" [to reach a more general epi audience]? (eg. "...to produce a representation or abstraction of the observed phenomena that could be calculated from the observations)...
 considering the following potential biases.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Sampling}
@@ -19,12 +19,12 @@ who had sold sex starting $\mathbb{d}_z \in \{0{-}2, 3{-}5, 6{-}10, 11+\}$ years
 % The adjusted proportions indicate fewer years selling sex \vs the unadjusted proportions,
 % which would be consistent with
 % challenges in reaching women in the first year(s) of sex work \cite{Cheuk2020}.
-% TODO: ^ move to discussion?
+% TODO: ^ move to discussion? %SM: agree with moving above to discussion [can cite Elizabeth's Kenya paper as an example and/or HM's CROI abstract - access gap paper not yet in preprint ugh].
 We start by defining a model to identify distributions of reported durations $d_i$
 which are consistent with these data.
 We model each proportion $p_z$ as a random variable with
-a beta approximation of binomial (BAB) distribution (see Appendix~\ref{app.bab})
-having parameters $N_z$ and $\rho_z$.
+a beta approximation of binomial (BAB) distribution (see Appendix~\ref{app.bab}) %SM: nice
+with parameters $N_z$ and $\rho_z$.
 We model each $N_z$ as a fixed value,
 which we fit to the \ci of $p_z$ as described in \sref{app.bab}.
 We then model each $\rho_z$ as
@@ -42,14 +42,14 @@ during their total (eventual) duration selling sex $D_i$, we can model this cens
 a random fraction $f_i \sim \distr{Unif}{0,1}$, such that $d_i = f_i D_i$.
 The expected means are then related by $\bar{d} / \bar{D} = \bar{f} = \frac12$.
 %---------------------------------------------------------------------------------------------------
-\paragraph{Measurement}
-Finally, women may not sell sex continuously.
+\paragraph{Measurement} %SM: love this!
+Finally, individuals may not sell sex continuously (i.e. enter, exit, and re-enter periods/seasons of occupational risk"). % SM: optional edit - paranthesis example not needed but may want to relate back to the intro...see what you think
 Reported durations $d_i$ may therefore include
 multiple periods of selling sex with gaps in between,
 whereas we aim to model $D_i$ as the durations of individual periods selling sex.
-Respondents in \cite{Baral2014} were not asked whether they ever stopped selling sex,
-but a later survey \cite{EswKP2014} indicated that $\phi = 45\%$ had stopped at least once.
-We model the number of times a woman stopped selling sex as
+Respondents in \cite{Baral2014} were not asked whether they ever temporarily ceased selling sex, %SM: "cease" may be a better term than "stopped"?; and presuming this survey asked about temporarily cessastion of sex work?
+but a later survey \cite{EswKP2014} indicated that $\phi = 45\%$ had stopped at least once. %SM: did they ask about duration of the periods in between engagement in sex work?
+We model the number of times an individual may temporarily cease selling sex as
 a Poisson-distributed random variable $s_i$ with mean~$\bar{s}$.
 The expected value of $\phi$ given $\bar{s}$ is then $\distr{P}{s > 0} = 1 - e^{-\bar{s}}$.
 Since $\phi = 45\%$ is an imperfect observation,
@@ -69,10 +69,10 @@ We must also assume a distribution for $g_i$, for which we choose
 $g_i \sim \distr{Exp}{1/\bar{g}}$, arbitrarily.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Summary}
-Figure~\ref{fig:model.yss} summarizes the proposed model graphically.
+Figure~\ref{fig:model.yss} summarizes the proposed model graphically. %SM: very nice
 The primary parameter of interest is
 the mean duration selling sex (for a given period) $\bar{D}$,
 but we must also infer
 the mean number of times women stop selling sex $\bar{s}$, and
 the mean relative duration of gaps $\bar{g}$.
-We assume uninformative priors for these 3 parameters.
+We assume uninformative priors for these 3 parameters. %SM: :) 
