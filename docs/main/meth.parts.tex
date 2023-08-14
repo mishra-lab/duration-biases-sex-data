@@ -48,9 +48,9 @@ If partnership duration is long and the recall period is short ($\delta \gg \ome
 then reported partnerships mostly reflect \emph{ongoing} partnerships,
 and thus $x \approx K$.
 However, if partnership duration and recall period are similar in length ($\delta \approx \omega$),
-then reported partnerships reflect a mixture of tail-ends, complete, and ongoing partnerships,
-and thus $x/\omega$ overestimates $Q$, but $x$ also overestimates $K$.
-These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}.
+then reported partnerships reflect a mixture of tail-ends, of complete, and of ongoing partnerships.
+Thus $x/\omega$ overestimates $Q$, but $x$ also overestimates $K$. %SM: nice
+These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}. %SM: i like this a lot
 % All estimates using \eqref{eq:bQK} are thus biased,
 % but the magnitude depends on the chosen interpretation and
 % ratio of partnership duration~$\delta$ to recall period~$\omega$.
@@ -59,7 +59,7 @@ These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}.
 To adjust for this bias, we again assume that survey/recall period timing is effectively random.
 Then, if the \emph{end} of the recall period would intersect an ongoing partnership,
 then a random fraction $f_i \sim \distr{Unif}{0,1}$ of the partnership duration $\delta$
-would be outside the recall period.
+would be outside the recall period. %SM: nicely written/explained
 As in before, the expected value $\bar{f} = \frac12$.
 The same goes for the \emph{start} of the recall period.
 Thus, the recall period is effectively extended by
@@ -72,7 +72,7 @@ We can therefore define unbiased estimators of $Q$ and $K$ as:
   K &= \frac{x \delta}{\omega + \delta} = Q \delta
 \end{alignat}
 \end{subequations}
-Returning to the generative model, we sample the true rate of partnership change
+Returning to the generative model, we sample the true rate of partnership change  %SM: returing to the generative model? or To apply the generative model..?
 from an assumed distribution $Q_i \sim \distr{Gamma}{\alpha,\beta}$,
 with unknown parameters $\alpha, \beta$.
 Then, we model the numbers of reported partners $x_i$
@@ -85,14 +85,14 @@ the distribution of rates of partnership change (for a given type) $Q$.
 We assume uninformative priors for these 2 parameters.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Comparing Assumptions}
-In order to quantify the influence of using
+To quantify the influence of using
 the biased \vs unbiased estimators of $Q$ and $K$,
 we fit the proposed model for each partnership type under three assumptions:
 assuming \emph{short} partnerships as in \eqref{eq:bQ} with $\omega' = \omega$;
 assuming \emph{long} partnerships as in \eqref{eq:bK} with $\omega' = \delta$; and
 \emph{no} assumption on partnership duration as in \eqref{eq:uQK} with $\omega' = \omega + \delta$.
 To illustrate more general trends in the magnitude of bias,
-we further compared biased \vs unbiased estimates of $Q$ and $K$ across a range of different
+we further compared biased \vs unbiased estimates of $Q$ and $K$ across a range of different  %SM: excellent! i really like that you did this
 partnership durations $\delta \in [0.1, 10]$ and
 recall periods $\omega \in [0.1, 10]$,
 with fixed true rate $Q = 1$ (arbitrary units).
