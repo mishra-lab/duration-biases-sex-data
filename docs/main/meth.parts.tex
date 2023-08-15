@@ -4,8 +4,7 @@ The survey \cite{Baral2014} also asked respondents to report
 their numbers of sexual partners ($x$) in a recall period ($\omega$) of $30$ days.
 Numbers were stratified by three types of partner:
 new paying clients, regular paying clients, and non-paying partners.
-We assume that
-only a small proportion of new clients go on to become regular clients;
+We assume that only a small proportion of new clients go on to become regular clients;
 thus, we conceptualize ``new'' clients as effectively ``one-off'' clients.%
 \footnote{The number of new clients per recall period
   could also be used to define a rate of partnership change \cite{Fazito2012},
@@ -15,7 +14,7 @@ we further assume that these were:
 1~day with new paying clients,
 4~months with regular paying clients, and
 3~years with non-paying partners.
-We now develop the generative model to estimate
+We now develop the hierarchical model to estimate
 the expected rate of partnership change for each type,
 considering the following potential biases.
 %---------------------------------------------------------------------------------------------------
@@ -39,28 +38,25 @@ $x$ as the \emph{number} of current partners ($K$):
 \end{alignat}
 \end{subequations}
 Both interpretations are reasonable under certain conditions:
-If partnership duration is short and the recall period is long ($\delta \ll \omega$),
+If partnership duration is short and the recall period is long
+($\delta \ll \omega$, \eg 1~day \vs 1~month),
 then reported partnerships mostly reflect \emph{complete} partnerships,
 and thus $x/\omega \approx Q$.
-If partnership duration is long and the recall period is short ($\delta \gg \omega$),
-% SM: could we give an example to make it tangilble
-%     (e.g. 10 years, and 6 months in the context of FSW surveys,....)
+If partnership duration is long and the recall period is short
+($\delta \gg \omega$, \eg 1~year \vs 1~month),
 then reported partnerships mostly reflect \emph{ongoing} partnerships,
 and thus $x \approx K$.
-However, if partnership duration and recall period are similar in length ($\delta \approx \omega$),
+However, if partnership duration and recall period are similar in length
+($\delta \approx \omega$, \eg 1~month \vs 1~month),
 then reported partnerships reflect a mixture of tail-ends, of complete, and of ongoing partnerships.
-Thus $x/\omega$ overestimates $Q$, but $x$ also overestimates $K$. %SM: nice
-These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}. %SM: i like this a lot
-% All estimates using \eqref{eq:bQK} are thus biased,
-% but the magnitude depends on the chosen interpretation and
-% ratio of partnership duration~$\delta$ to recall period~$\omega$.
+Thus $x/\omega$ overestimates $Q$, but $x$ also overestimates $K$.
+These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}.
 \par
-% TODO: f_i should be a RV in the model ...
 To adjust for this bias, we again assume that survey/recall period timing is effectively random.
 Then, if the \emph{end} of the recall period would intersect an ongoing partnership,
 then a random fraction $f_i \sim \distr{Unif}{0,1}$ of the partnership duration $\delta$
-would be outside the recall period. %SM: nicely written/explained
-As in before, the expected value $\bar{f} = \frac12$.
+would be outside the recall period.
+As before, the expected value $\bar{f} = \frac12$.
 The same goes for the \emph{start} of the recall period.
 Thus, the recall period is effectively extended by
 half the partnership duration $\delta/2$ on each end, and $\delta$ overall,
@@ -72,7 +68,7 @@ We can therefore define unbiased estimators of $Q$ and $K$ as:
   K &= \frac{x \delta}{\omega + \delta} = Q \delta
 \end{alignat}
 \end{subequations}
-Returning to the generative model, we sample the true rate of partnership change  %SM: returing to the generative model? or To apply the generative model..?
+To apply \eqref{eq:uQK} in the hierarchical model, we sample the true rate of partnership change
 from an assumed distribution $Q_i \sim \distr{Gamma}{\alpha,\beta}$,
 with unknown parameters $\alpha, \beta$.
 Then, we model the numbers of reported partners $x_i$
@@ -92,7 +88,7 @@ assuming \emph{short} partnerships as in \eqref{eq:bQ} with $\omega' = \omega$;
 assuming \emph{long} partnerships as in \eqref{eq:bK} with $\omega' = \delta$; and
 \emph{no} assumption on partnership duration as in \eqref{eq:uQK} with $\omega' = \omega + \delta$.
 To illustrate more general trends in the magnitude of bias,
-we further compared biased \vs unbiased estimates of $Q$ and $K$ across a range of different  %SM: excellent! i really like that you did this
+we further compared biased \vs unbiased estimates of $Q$ and $K$ across a range of different
 partnership durations $\delta \in [0.1, 10]$ and
 recall periods $\omega \in [0.1, 10]$,
 with fixed true rate $Q = 1$ (arbitrary units).

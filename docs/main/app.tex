@@ -11,7 +11,7 @@
 %===================================================================================================
 \subsection{Code}\label{app.code}
 All analysis code is available online at: \hreftt{github.com/mishra-lab/duration-bias}.\\
-We fit the generative models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
+We fit the Bayesian hierarchical models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
 with 1000 adaptive iterations and 100,000 sampling iterations.
 %===================================================================================================
 \subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}
@@ -35,12 +35,12 @@ the 95\% quantiles of \eqref{eq:bab} given $N$ and the reported \ci for the adju
 %---------------------------------------------------------------------------------------------------
 \paragraph{Fitting to RDS-Adjusted Proportions}
 Figure~\ref{fig:yss.fit} illustrates
-the observed \vs inferred proportions of women reporting
+the observed \vs inferred proportions of respondents reporting
 different durations selling sex,
-following each stage of adjustment outlined in \sref{meth.yss}.
+following each stage of adjustment from \sref{meth.yss}.
 \begin{figure}[h]
   \centering\includegraphics[scale=.8]{yss.fit}
-  \caption{Proportions of women reporting different durations selling sex:
+  \caption{Proportions of respondents reporting different durations selling sex:
     observed (points and ranges) \vs inferred posterior (coloured regions)
     after 3 stages of adjustment}
   \label{fig:yss.fit}
@@ -48,7 +48,7 @@ following each stage of adjustment outlined in \sref{meth.yss}.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Numeric Summary}
 Table~\ref{tab:yss.adj} summarizes the estimated exponential distribution means (\ci)
-for years selling sex following each stage of adjustment outlined in \sref{meth.yss}.
+for years selling sex following each stage of adjustment from \sref{meth.yss}.
 \begin{table}[h]
   \centering
   \caption{Estimated mean durations selling sex (years) following each stage of adjustment}
@@ -60,12 +60,12 @@ for years selling sex following each stage of adjustment outlined in \sref{meth.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Fitting to RDS-Adjusted Proportions}
 Figure~\ref{fig:parts.fit} illustrates
-the observed \vs inferred proportions of women reporting
+the observed \vs inferred proportions of respondents reporting
 different numbers of partners in the past 30 days,
-under each partnership duration assumption outlined in \sref{meth.parts}.
+under each partnership duration assumption from \sref{meth.parts}.
 \begin{figure}[h]
   \centering\includegraphics[scale=.8]{parts.fit}
-  \caption{Proportions of women reporting different numbers of partner in the past 30 days:
+  \caption{Proportions of respondents reporting different numbers of partner in the past 30 days:
     observed (points and ranges) \vs inferred posterior (coloured regions)
     under different partnership duration assumptions}
   \label{fig:parts.fit}
@@ -74,7 +74,7 @@ under each partnership duration assumption outlined in \sref{meth.parts}.
 \paragraph{Numeric Summary}
 Table~\ref{tab:parts.fsw} summarizes the means (\ci) for
 rates of partnership change and numbers of current partners
-estimated under each partnership duration assumption outlined in \sref{meth.parts}.
+estimated under each partnership duration assumption from \sref{meth.parts}.
 \begin{table}[h]
   \centering
   \caption{Biased \vs unbiased estimates of
