@@ -1,7 +1,7 @@
 \section{Supplement}
 %===================================================================================================
 \subsection{Source Data}\label{app.data}
-Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}.
+% Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}. % spacing
 \begin{table}[h]
   \centering
   \caption{RDS-adjusted proportions for variables of interest}
@@ -14,10 +14,12 @@ All analysis code is available online at: \hreftt{github.com/mishra-lab/duration
 We fit the generative models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
 with 1000 adaptive iterations and 100,000 sampling iterations.
 %===================================================================================================
-\subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}  
+\subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}
 The distributions of RDS-adjusted variables in \cite{Baral2014} were reported as
-adjusted proportions (mean, \ci) for different variable value strata.  %SM: thiis part not super clear re: different variable value strata...
+adjusted proportions (mean, \ci) for different stratifications of the variable value;
+\eg 16.4~(9.8,~23.0)\,\% of respondents reported 0--1 new clients in the past 30 days.
 For each proportion, we defined a beta approximation of the binomial (BAB) distribution:
+\par % HACK spacing
 \begin{align}\label{eq:bab}
   \distr{P}{\rho} &=
     \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\,\Gamma(\beta)}\,
@@ -35,8 +37,8 @@ the 95\% quantiles of \eqref{eq:bab} given $N$ and the reported \ci for the adju
 Figure~\ref{fig:yss.fit} illustrates
 the observed \vs inferred proportions of women reporting
 different durations selling sex,
-following each stage of adjustment outlined in \sref{meth.yss}. 
-\begin{figure}[h] %SM: nice 
+following each stage of adjustment outlined in \sref{meth.yss}.
+\begin{figure}[h]
   \centering\includegraphics[scale=.8]{yss.fit}
   \caption{Proportions of women reporting different durations selling sex:
     observed (points and ranges) \vs inferred posterior (coloured regions)
@@ -72,7 +74,7 @@ under each partnership duration assumption outlined in \sref{meth.parts}.
 \paragraph{Numeric Summary}
 Table~\ref{tab:parts.fsw} summarizes the means (\ci) for
 rates of partnership change and numbers of current partners
-estimated under each partnership duration assumption outlined in \sref{meth.parts}. %SM: nice
+estimated under each partnership duration assumption outlined in \sref{meth.parts}.
 \begin{table}[h]
   \centering
   \caption{Biased \vs unbiased estimates of
