@@ -3,7 +3,7 @@
 \usepackage[tabular,osf,sfdefault]{gandhi}
 \usepackage[italic]{mathastext}
 \usepackage{xfp,bm}
-\usetikzlibrary{arrows.meta,calc}
+\usetikzlibrary{arrows.meta,calc,decorations.pathreplacing}
 % colours
 \definecolor{surv}{HTML}{ff9900}
 \definecolor{yss} {HTML}{21908C}
@@ -36,6 +36,16 @@
   parto/.style = {partx, -{Rays[length=6pt]}},
   partb/.style = {partx,{Circle[length=4pt]}-{Rays[length=6pt]}},
   partz/.style = {partx, -{Square[length=4pt]}},
+  brace/.style = {
+    decorate,
+    decoration = {brace,amplitude=1ex},
+  },
+  plot/.style 2 args = {
+    thick,
+    variable = \x,
+    samples = 128,
+    domain = #1:#2,
+  },
 }
 % partnerships
 \newif\ifdrawpairs

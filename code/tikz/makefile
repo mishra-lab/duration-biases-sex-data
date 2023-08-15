@@ -1,4 +1,5 @@
 figs =
+figs += diag.yss.mdmu
 figs += diag.yss.censor
 figs += diag.yss.gaps
 figs += diag.partner.cases

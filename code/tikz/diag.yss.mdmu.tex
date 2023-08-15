@@ -1,0 +1,8 @@
+\begin{tikzpicture}[x=15mm,y=25mm]
+  \draw[thick] (0,1) -- node[rotate=90,above]{Proportion} (0,0)
+                     -- node[rotate=00,below]{Years selling sex} (4,0);
+  \draw[yss,plot=04] plot ({\x},{exp(-\x)});
+  \draw[yss,   dotted,thick] (1.000,0) -- (1.000,.368) node[above right=-1mm]{mean = $\mu$} -- (0,.368);
+  \draw[yss!50,dotted,thick] (0.693,0) -- (0.693,.500) node[above right=-1mm]{median = $0.69\,\mu$} -- (0,.500);
+  \draw[yss!50,plot=04] plot ({\x},{exp(-\x/.693)});
+\end{tikzpicture}
