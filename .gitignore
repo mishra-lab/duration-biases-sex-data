@@ -2,7 +2,7 @@
 .old/
 .tmp/
 .rdata/
-.coa/
+.sub/
 # code
 Rplots.pdf
 code/tikz/main.pdf
