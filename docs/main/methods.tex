@@ -1,19 +1,13 @@
 \section{Methods}\label{meth}
-%---------------------------------------------------------------------------------------------------
-\paragraph{Data Source}
-Full details of the survey methodology are available in \cite{Yam2013}.
-Briefly, 328 women aged 15+
+We conceptualize bias adjustments to aggregate estimates of
+duration selling sex and partnership change rates
+using Bayesian hierarchical models.
+We then attempt to infer unbiased estimates of these parameters
+via Gibbs sampling \cite{Geman1984}.
+Implementation details are given in Appendix~\ref{app.code}.
+We use data from \cite{Baral2014}, in which 328 women aged 15+
 who reported exchanging or selling sex for money, favors, or goods in the past 12 months
 were recruited via respondent-driven sampling (RDS) \cite{Heckathorn1997}.
-%---------------------------------------------------------------------------------------------------
-\paragraph{Approach}
-We conceptualize bias adjustments to the given data using Bayesian hierarchical models.
-Specifically, we define explicit distributions for the unbiased data and bias-generating mechanisms,
-and infer the parameters of these distributions based on the available data,
-using Gibbs sampling \cite{Geman1984}.
-Implementation details are given in Appendix~\ref{app.code}.
-Figure~\ref{fig:diag} gives some supporting diagrams, while
-Figure~\ref{fig:model} illustrates the complete models.
 \input{fig.diag}
 %===================================================================================================
 \subsection{Duration Selling Sex}\label{meth.yss}

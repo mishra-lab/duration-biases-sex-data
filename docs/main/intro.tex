@@ -1,24 +1,23 @@
 \section{Introduction}
 Mathematical models of sexually transmitted infections require
-quantitative estimates of sexual behaviour for model inputs (parameters) \cite{Garnett2002}.
-In such models with risk heterogeneity
---- \ie considering states that experience differential risks ---
-two important parameters are:
-the duration of time within an epidemiological risk state/group (or period/season of risk) and
-the rate of sexual partnership change (often stratified by partnership type)
+estimates of sexual behaviour for model inputs (parameters) \cite{Garnett2002}.
+In risk-stratified models, two important parameters are:
+the duration of time within epidemiological risk states/groups, and
+rates of sexual partnership change for each group
 \cite{Garnett1996,Stigum1997,Watts2010,Knight2020}.
-For example, the average duration of time engaged in sex work
-can be used to define the modelled rate of ``turnover'' among sex workers \cite{Watts2010}.
-Similarly, the numbers of main, casual, transactional, and/or paying sexual partners per year
-can be used to define the modelled rate of infection incidence \cite{Boily2015}.
+For example, the average duration of time selling sex can be used to define
+the modelled rate of ``turnover'' among sex workers \cite{Knight2020},
+while, numbers of main, casual, and/or paying sexual partners per year
+can be used to define the modelled ``force of infection'' \cite{Boily2015}.
 \par
 Data to inform these parameters largely come from cross-sectional studies,
 and are often only available as aggregate estimates (\vs individual-level data).
-Such estimates may be subject to several ``hidden'' sources of bias which can easily go unnoticed,
-including distributional, sampling, censoring, and measurement biases.
-Our aim is therefore to explore bias adjuments for estimating:
-(1) duration in a risk state, and (2) rate of partnership change,
-from aggregate cross-sectional survey data.
-We explore and demonstrate these topics using data from
-a 2011 female sex worker survey in Eswatini~\cite{Baral2014},
-to support parameterization of a mathematical model of heterosexual HIV transmission.
+While much attention has been paid to
+sampling and reporting biases affecting sexual behaviour data \cite{Fenton2001},
+relatively less work has examined censoring biases.
+Our aim is therefore to described and address
+several types of censoring biases when estimating:
+(1) duration selling sex, and (2) rates of partnership change,
+from aggregate cross-sectional estimates.
+We use data from a 2011 female sex worker survey in Eswatini \cite{Yam2013}
+to support parameterization of an HIV transmission model.
