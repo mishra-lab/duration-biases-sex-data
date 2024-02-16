@@ -5,7 +5,7 @@ tex:
 bib:
 	biber main
 wc:
-	python3 words/words.py
+	python3 ../wc/wc.py abs intro methods meth.yss meth.parts results discuss
 cls:
 	cp ~/dev/tex/pkg/ms/ms/ms.cls .
 clean:
