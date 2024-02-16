@@ -5,7 +5,7 @@ model{
     rho.z[z] <- min(1-eps,max(eps,
       mean((d.i > d.z[z]) && (d.i <= d.z[z+1]))))
   }
-  # respondents
+  # simulated respondents
   for (i in 1:N.i){
     D.i[i] ~ dexp(1/D)
     f.i[i] ~ dunif(0,1)

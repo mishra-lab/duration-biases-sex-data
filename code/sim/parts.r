@@ -1,6 +1,6 @@
 source('sim/utils.r')
 
-biases = c('Short','None','Long')
+biases = c('Short','Unbiased','Long')
 durs   = c('swo'=1/30,'swr'=4,'npp'=36)
 types  = c('New Clients'='swo','Regular Clients'='swr','Non-Paying'='npp')
 vars   =  c('Q: Rate of\nPartnership Change'='Q',
@@ -34,11 +34,11 @@ plot.fsw = function(X.s){
   fig.save('parts.fsw',w=4,h=6)
 }
 
-sim.fsw = function(X,bias='none'){
+sim.fsw = function(X,bias){
   recall.eff = function(recall,dur){ list(
-    'Long'  = dur,
+    'Long' = dur,
     'Short' = recall,
-    'None'  = recall+dur
+    'Unbiased' = recall+dur
   )[[bias]] }
   X.s = do.call(rbind,par.lapply(types,function(type){
     X.i = X[X$type==type,]
@@ -86,9 +86,9 @@ plot.grid = function(X.b){
 main.grid = function(Q=1){
   X = expand.grid(rec = 10^seq(-1,+1,.2), dur = c(.1,.3,1,3,10))
   X.b = rbind( # 3 bias cases
-    cbind(X,bias='None',  Q = Q, K = Q*X$dur),
-    cbind(X,bias='Short', Q = Q*(X$rec+X$dur)/X$rec, K = NA),
-    cbind(X,bias='Long',  Q = NA, K = Q*(X$rec+X$dur)))
+    cbind(X,bias='Unbiased', Q = Q, K = Q*X$dur),
+    cbind(X,bias='Short',    Q = Q*(X$rec+X$dur)/X$rec, K = NA),
+    cbind(X,bias='Long',     Q = NA, K = Q*(X$rec+X$dur)))
   plot.grid(X.b)
 }
 

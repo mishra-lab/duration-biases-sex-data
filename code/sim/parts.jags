@@ -5,7 +5,7 @@ model{
     rho.z[z] <- min(1-eps,max(eps,
       mean((x.i > x.z[z]) && (x.i <= x.z[z+1]))))
   }
-  # respondents
+  # simulated respondents
   for (i in 1:N.i){
     Q.i[i] ~ dgamma(Q.shape,Q.rate)
     x.i[i] ~ dpois(Q.i[i]*recall.eff)
