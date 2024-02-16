@@ -1,6 +1,6 @@
-\section{Supplement}
+\part{}\label{app}
 %===================================================================================================
-\subsection{Source Data}\label{app.data}
+\section{Source Data}\label{app.data}
 Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}.
 \begin{table}[h]
   \centering
@@ -8,14 +8,13 @@ Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}.
   \label{tab:data}
   \input{tab.data}
 \end{table}
-\vspace{-2\baselineskip} % HACK spacing
 %===================================================================================================
-\subsection{Code}\label{app.code}
+\section{Code}\label{app.code}
 All analysis code is available online at: \hreftt{github.com/mishra-lab/hidden-bias-sex-data}.\\
 We fit the Bayesian hierarchical models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
 with 1000 adaptive iterations and 100,000 sampling iterations.
 %===================================================================================================
-\subsection{Beta Approximation of the Binomial Distribution}\label{app.bab}
+\section{Beta Approximation of the Binomial Distribution}\label{app.bab}
 The distributions of RDS-adjusted variables in \cite{Baral2014} were reported as
 adjusted proportions (mean, \ci) for different stratifications of the variable value;
 \eg 16.4~(9.8,~23.0)\,\% of respondents reported 0--1 new clients in the past 30 days.
@@ -32,7 +31,7 @@ We fixed $\rho$ as the adjusted point estimate,
 and estimated $N$ by minimizing the sum of squared differences between
 the 95\% quantiles of \eqref{eq:bab} given $N$ and the reported \ci for the adjusted proportion.
 %===================================================================================================
-\subsection{Risk Group Duration}\label{app.yss}
+\section{Risk Group Duration}\label{app.yss}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Fitting to RDS-Adjusted Proportions}
 Figure~\ref{fig:yss.fit} illustrates
@@ -57,7 +56,7 @@ for years selling sex following each stage of adjustment from \sref{meth.yss}.
   \input{tab.yss}
 \end{table}
 %===================================================================================================
-\subsection{Rate of Partnership Change}\label{app.parts}
+\section{Rate of Partnership Change}\label{app.parts}
 %---------------------------------------------------------------------------------------------------
 \paragraph{Fitting to RDS-Adjusted Proportions}
 Figure~\ref{fig:parts.fit} illustrates

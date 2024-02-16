@@ -1,9 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{ms}
 [2023/07/20 v0.0.1 Manuscript Class]
-% article inheritance
+% options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{family=ms,prefix=ms@}
+\DeclareStringOption[numeric-comp]{bibstyle}
+\DeclareBoolOption[false]{blind}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ProcessOptions
+\ExecuteOptions{}
+\ProcessKeyvalOptions*
+\ProcessOptions\relax
 \LoadClass{article}
 % spacing
 \RequirePackage[margin=35mm]{geometry} % TODO make class options
@@ -15,6 +21,7 @@
 \RequirePackage[onehalfspacing]{setspace} % TODO: make class options
 % meta-data
 \RequirePackage{authblk}
+\ifms@blind\AtBeginDocument{\gdef\@author{\textsc{redacted}}}\fi
 \def\meta@block{}
 \newcommand{\meta@part}[2]{%
   \hspace{\metalabel}\llap{\textbf{#1}}\hspace{1em}%
@@ -35,7 +42,7 @@
   \clearpage\setcounter{page}{1}%
   \meta@block
   \clearpage}
-% appendix
+% appendix - TODO: option for part vs section
 \let\xappendix\appendix
 \renewcommand{\appendix}{%
   \clearpage\setcounter{page}{1}%
@@ -44,10 +51,14 @@
   \meta@part{Authors}{\@author}\medskip
   \meta@part{Date}{\@date}
   \xappendix
+  \renewcommand{\partname}{Appendix}
+  \renewcommand{\thepart}{\Alph{part}}
+  \renewcommand{\thesection}{\thepart.\arabic{section}}
   \refsection
-  \counterwithin{table}{section}
-  \counterwithin{figure}{section}
-  \counterwithin{equation}{section}
+  \counterwithin{section}{part}
+  \counterwithin{table}{part}
+  \counterwithin{figure}{part}
+  \counterwithin{equation}{part}
   \clearpage}
 % cover
 \newcommand{\address}[3][Submission of a manuscript to \emph{\@journal}]{%
@@ -59,11 +70,12 @@
 % bib
 \RequirePackage[
   natbib=true,
-  style=numeric,
+  style=\ms@bibstyle,
   sorting=none,
   url=true,
   doi=false,
   isbn=false,
+	date=year,
 ]{biblatex}
 % helpers
 \renewcommand{\paragraph}[1]{\par\textbf{#1}\hskip.5em}
