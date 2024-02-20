@@ -1,13 +1,17 @@
 \section{Methods}\label{meth}
-We conceptualize bias adjustments to aggregate estimates of
-duration selling sex and partnership change rates
-using Bayesian hierarchical models.
-We then attempt to infer unbiased estimates of these parameters
-via Gibbs sampling \cite{Geman1984}.
-Implementation details are given in Appendix~\ref{app.code}.
-We use data from \cite{Baral2014}, in which 328 women aged 15+
+Our starting data are aggregate estimates of
+duration selling sex and numbers of sexual partners from \cite{Baral2014}.
+In this study, 328 women aged 15+
 who reported exchanging or selling sex for money, favors, or goods in the past 12 months
 were recruited via respondent-driven sampling (RDS) \cite{Heckathorn1997}.
+For each parameter --- duration selling sex and partnership change rates ---
+we describe different potential mechanisms of bias,
+and integrate these mechanisms stepwise into Bayesian hierarchical models.
+We then attempt to infer unbiased estimates of these parameters
+via Gibbs sampling \cite{Geman1984}.
+Model implementation details are given in Appendix~\ref{app.code}.
+Figure~\ref{fig:diag} illustrates some helpful diagrams, while
+Figure~\ref{fig:model} summarizes the final models.
 \input{fig.diag}
 %===================================================================================================
 \subsection{Duration Selling Sex}\label{meth.yss}

@@ -10,7 +10,7 @@ Table~\ref{tab:data} gives the RDS-adjusted data from \cite{Baral2014}.
 \end{table}
 %===================================================================================================
 \section{Code}\label{app.code}
-All analysis code is available online at: \hreftt{github.com/mishra-lab/hidden-bias-sex-data}.\\
+All analysis code is available online at: \hreftt{github.com/mishra-lab/duration-biases-sex-data}.\\
 We fit the Bayesian hierarchical models using rjags: \hreftt{cran.r-project.org/package=rjags},\\
 with 1000 adaptive iterations and 100,000 sampling iterations.
 %===================================================================================================
@@ -83,4 +83,19 @@ estimated under each partnership duration assumption from \sref{meth.parts}.
   \label{tab:parts.fsw}
   \input{tab.parts.fsw}
 \end{table}
+%---------------------------------------------------------------------------------------------------
+\paragraph{Generalized Trends}
+Figure~\ref{fig:parts.grid} illustrates generalized trends in estimated
+rates of partnership change and numbers of current partners
+under different partnership duration assumptions
+for different recall periods and partnership durations.
+\begin{figure}[h]
+  \centering\includegraphics[scale=.8]{parts.grid}
+  \caption{Estimates of rates of partnership change and numbers of current partners
+    under different partnership duration assumptions
+    for different recall periods and partnership durations}
+  \label{fig:parts.grid}
+  \floatfoot{Units are arbitrary.}
+\end{figure}
+%---------------------------------------------------------------------------------------------------
 \printbibliography

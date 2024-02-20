@@ -1,22 +1,21 @@
 %---------------------------------------------------------------------------------------------------
-\paragraph{Crude Estimates}
-The survey \cite{Baral2014} included questions about
-the current respondent's age and the age of first selling sex.
-The difference between these ages could be used to define a crude ``duration selling sex''.
-Using this approach, the crude median duration was $\tilde{d} = 4$ years.
-However, if durations are assumed to be exponentially distributed
---- a implicit assumption in compartmental models \cite{Anderson1991} ---
-then the crude mean could be estimated from the crude median as
-$\bar{d} = \tilde{d}/\distr{log}{2}$ due to skewness.
-To move beyond crude estimates, next we develop the hierarchical model,
-considering the following potential biases.
+\paragraph{Base Estimate}
+The survey in \cite{Baral2014} did not ask respondents about duration selling sex directly,
+only about current age and age of first selling sex.
+The difference between these ages could be used to estimate duration selling sex.
+Using this approach, the raw median duration was $\hat{d} = 4$ years.
+However, if durations are exponentially distributed
+--- an implicit assumption in compartmental models \cite{Anderson1991} ---
+then the mean $\bar{d}$ is related to the the median by
+$\bar{d} = \hat{d}/\distr{log}{2}$ due to skewness.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Sampling}
 Sampling bias was considered via RDS-adjustment in \cite{Baral2014},
 yielding mean and \ci estimates of the proportions of respondents $p_z$
 who had sold sex starting $\mathbb{d}_z \in \{0{-}2, 3{-}5, 6{-}10, 11+\}$ years ago
 (Table~\ref{tab:data}, ``$z$'' enumerates strata).
-We start by defining a model to identify distributions of reported durations $d_i$
+We start by defining a model to identify
+distributions of reported durations selling sex $d_i$
 which are consistent with these data.
 We model each proportion $p_z$ as a random variable with
 a beta approximation of binomial (BAB) distribution (see Appendix~\ref{app.bab})
@@ -26,11 +25,12 @@ which we fit to the \ci of $p_z$ as described in \sref{app.bab}.
 We then model each $\rho_z$ as
 the proportion of reported durations $d_i$ within the interval $\mathbb{d}_z$.
 Since these proportions are difficult to define analytically,
-we estimate $\hat{\rho}_z = \distr{mean}{d_i \in \mathbb{d}_z}$ from $N = 100$ samples.
+we estimate $\hat{\rho}_z = \distr{mean}{d_i \in \mathbb{d}_z}$
+from $N = 100$ samples --- \ie $100$ simulated respondents.
 %---------------------------------------------------------------------------------------------------
 \paragraph{Censoring}
 These reported durations $d_i$ are effectively right censored
-because they only capture engagement in sex work up until the survey, and
+because they only capture engagement in sex work up until the survey,
 and not additional sex work after the survey
 (Figure~\ref{fig:diag.yss.censor}) \cite{Fazito2012}.
 If we assume that the survey reaches respondents at a random time point
@@ -38,7 +38,7 @@ during their total (eventual) duration selling sex $D_i$, we can model this cens
 a random fraction $f_i \sim \distr{Unif}{0,1}$, such that $d_i = f_i D_i$;
 the expected means are then related by $\bar{d} / \bar{D} = \bar{f} = \frac12$ \cite{Tufto2017}.
 %---------------------------------------------------------------------------------------------------
-\paragraph{Measurement}
+\paragraph{Interruption}
 Finally, respondents may not sell sex continuously.
 Reported durations $d_i$ may therefore include
 multiple periods of selling sex with gaps in between,
@@ -51,7 +51,7 @@ The expected value of $\phi$ given $\bar{s}$ is then $\distr{P}{s > 0} = 1 - e^{
 Since $\phi = 45\%$ is an imperfect observation,
 we model $\phi$ as a random variable with a BAB distribution
 having parameters $N = 328$ and $\rho = 1 - e^{-\bar{s}}$,
-which allows inference on $\bar{s}$ given $\phi$.
+which allows inference on the rate $\bar{s}$ given $\phi$.
 \par
 Next, we update the model for reported durations as $d_i = D_i\,(f_i + s_i\,(1 + g_i))$,
 where $g_i$ is the relative duration of gaps between selling sex,
