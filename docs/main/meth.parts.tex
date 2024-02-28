@@ -1,9 +1,20 @@
 %---------------------------------------------------------------------------------------------------
 \paragraph{Base Data \& Assumptions}
+% LW: i wonder if helpful to break ur base estimate/data into two sections:
+%     one section focus on describing the survey data only.
+%     2nd section focus on 'conventional ways of estimating the paramters of interest
+%     from the survey data' (aka: base estimate).
+%     same applies fro the 2.1
 The survey \cite{Baral2014} also asked respondents to report
 their numbers of sexual partners ($x$) in a recall period ($\omega$) of $30$ days.
 Numbers were stratified by three types of partner:
 new paying clients, regular paying clients, and non-paying partners.
+% LW: add here: 'however, the survey did not ask about duration for each type of partnerhship"
+%     u had below - i think better bring up here.
+%     describe what is survey data is available/ and what is not (limitation). then ur solutions.
+%     i would consider bring in the word 'triangulation' some where in your paper.
+%     it is not just biases adjustment - if the data collected was not intended to use for
+%     a specific estimates. but rather missing data problem in certain case.
 We assume that only a small proportion of new clients go on to become regular clients;
 thus, we conceptualize ``new'' clients as effectively ``one-off'' clients.%
 \footnote{The number of new clients per recall period
@@ -57,6 +68,9 @@ Then, if the \emph{end} of the recall period would intersect an ongoing partners
 then a random fraction $f_i \sim \distr{Unif}{0,1}$ of the partnership duration $\delta$
 would be outside the recall period.
 As before, the expected value $\bar{f} = \frac12$.
+% LW: for this part - (same goes for the previous section) -
+%     i wonder if other modeling studies have incorporated the same in their parameterization?
+%     if so - could cite and mention.
 The same goes for the \emph{start} of the recall period.
 Thus, the recall period is effectively extended by
 half the partnership duration $\delta/2$ on each end, and $\delta$ overall \cite{Neely2023},
@@ -83,10 +97,15 @@ We assume uninformative priors for these 2 parameters.
 \paragraph{Comparing Assumptions}
 To quantify the influence of using
 the biased \vs unbiased estimators of $Q$ and $K$,
+% LW: shall we call it crude vs. adjusted estimates instead?
+%     (for estimates when u adjust for partial bias mechanism - what do u call it for now?)
 we fit the proposed model for each partnership type under three assumptions:
 assuming \emph{short} partnerships as in \eqref{eq:bQ} with $\omega' = \omega$;
 assuming \emph{long} partnerships as in \eqref{eq:bK} with $\omega' = \delta$; and
 our \emph{unbiased} approach as in \eqref{eq:uQK} with $\omega' = \omega + \delta$.
+% LW: i wonder instead calling as 3 assumptions - the 3rd one is not really an assumption
+%     but ur proposed bias adjusted approach - which can handle any assumption
+%     of partnership duration estimates. wonder if u can make it clearer.
 To illustrate more general trends in the magnitude of bias,
 we further compared biased \vs unbiased estimates of $Q$ and $K$ across a range of different
 partnership durations $\delta \in [0.1, 10]$ and
