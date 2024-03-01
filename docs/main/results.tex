@@ -9,8 +9,9 @@ Figure~\ref{fig:yss.adj} illustrates
 % LW: can we make it even clearer? i believe +censoring is ontop of +sampling;
 %     and +interruption is on top of the sampling and censoring?
 %     if so - make it clearer/explicit.
-the estimated cumulative distributions for years selling sex following each stage of adjustment,
-while Table~\ref{tab:yss.adj} provides the corresponding distribution means $\bar{D}$ and \ci.
+% JK: not sure how else to say ... I added a definition for "+" in the figure guide which may help
+the estimated cumulative distributions for years selling sex following each stage of adjustment;
+Table~\ref{tab:yss.adj} provides the corresponding distribution means $\bar{D}$ and \ci.
 In this case, the final estimate of 4.06~(2.29,~6.34) is similar to the original median of 4,
 because each adjustment alternates betwen increasing and decreasing $\bar{D}$.
 The censoring adjustment yields the largest increase, while
@@ -19,13 +20,15 @@ the interruption adjustment yields the largest decrease.
   \centering\includegraphics[scale=.75]{yss.adj}
   % LW: a little hard to read the median as it overlaps
   %     wonder if there is a solution to make it clearer
+  % JK: have flipped the order of linestyles, so dotted is on top
   \caption{Estimated cumulative distribution for years selling sex
-    following stages of adjustment}
+    following each stage of adjustment}
   \label{fig:yss.adj}
   \floatfoot{Guide:
     \g{lines}{cumulative distribution under posterior mean},
     \g{shaded ribbon}{\ci},
-    \g{circles}{posterior mean}.}
+    \g{circles}{posterior mean};
+    \g{``+''}{adding to existing adjustments}.}
 \end{figure}
 %---------------------------------------------------------------------------------------------------
 \subsection{Rates of Partnership Change}\label{res.parts}
@@ -41,11 +44,14 @@ Biases are largest for
 $Q$ with long partnerships (\eg non-paying partners) and
 $K$ with short partnership (\eg new clients).
 However, biases are significant for
-both $Q$ and $K$ with ``medium-length'' partnerships (\eg regular clients).
+both $Q$ and $K$ with ``medium-length'' partnerships (\eg regular clients),
+because the assumed partnership duration of $\delta = 4$ months
+is similar to the recall period of $\omega = 1$ month.
 Figure~\ref{fig:parts.grid} illustrates generalized trends in these biases.
 \begin{figure}
   \centering\includegraphics[scale=.75]{parts.fsw}
   % LW: see comments above-  .. the unbiased/adjusted estimates is not rather an assumption
+  % JK: got it, thanks!
   \caption{Estimates of rates of partnership change and numbers of current partners
     under different partnership duration assumptions
     for three partnership types reported by female sex workers}

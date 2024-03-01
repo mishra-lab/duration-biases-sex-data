@@ -1,44 +1,44 @@
 %---------------------------------------------------------------------------------------------------
-\paragraph{Base Data \& Assumptions}
+\paragraph{Data \& Assumptions}
 % LW: i wonder if helpful to break ur base estimate/data into two sections:
 %     one section focus on describing the survey data only.
 %     2nd section focus on 'conventional ways of estimating the paramters of interest
 %     from the survey data' (aka: base estimate).
-%     same applies fro the 2.1
+%     same applies for 2.1
+% JK: Oh, I really like this! Since the data for yss is basically 1 sentence,
+%     I combined with the crude estimate, vs here where we need data & assumptions
+%     as it's own subsection, followed by a crude estimate subsection as you suggested
+%     for more consistent flow between both sections (2.1, 2.2)
 The survey \cite{Baral2014} also asked respondents to report
-their numbers of sexual partners ($x$) in a recall period ($\omega$) of $30$ days.
+their numbers of sexual partners in a recall period of 30 days.
 Numbers were stratified by three types of partner:
 new paying clients, regular paying clients, and non-paying partners.
+However, the survey did not ask about partnership durations.
 % LW: add here: 'however, the survey did not ask about duration for each type of partnerhship"
 %     u had below - i think better bring up here.
 %     describe what is survey data is available/ and what is not (limitation). then ur solutions.
-%     i would consider bring in the word 'triangulation' some where in your paper.
+% JK: ah, good point -- I have added above.
+% LW: i would consider bring in the word 'triangulation' some where in your paper.
 %     it is not just biases adjustment - if the data collected was not intended to use for
 %     a specific estimates. but rather missing data problem in certain case.
+% JK: Hmm, I do like this suggestion, but my understanding of triangulation is
+%     averaging/combining multiple potential sources for the same variable,
+%     whereas we are focused on bias adjustments for one data source ---
+%     for that reason I have added only in the discussion that
+%     our approach could extend to include multiple data sources, as in triangulation.
 We assume that only a small proportion of new clients go on to become regular clients;
 thus, we conceptualize ``new'' clients as effectively ``one-off'' clients.%
 \footnote{The number of new clients per recall period
   could also be used to define a rate of partnership change \cite{Fazito2012},
   but we do not explore this approach here.}
-Since no survey questions asked about partnership durations ($\delta$),
-we further assume that these were:
+We further assume that partnership durations were:
 1~day with new paying clients,
 4~months with regular paying clients, and
 3~years with non-paying partners.
-We now develop the hierarchical model to estimate
-the expected rate of partnership change for each type,
-considering the following potential biases.
 %---------------------------------------------------------------------------------------------------
-\paragraph{Sampling}
-As before, \cite{Baral2014} estimates RDS-adjusted proportions of respondents $p_z$ (mean, \ci)
-reporting different numbers/ranges of partners $\mathbb{x}_z$ in the past 30 days
-(Table~\ref{tab:data}).
-Thus, we take the same approach as in \sref{meth.yss}
-to identify distributions of reported partner numbers $x_i$
-which are consistent with these proportion data for each partnership type.
-%---------------------------------------------------------------------------------------------------
-\paragraph{Duration Assumptions}
-Numbers of reported partners ($x$) have generally been interpreted in two ways ---
+\paragraph{Crude Estimates}
+Numbers of reported partners ($x$) in a given recall period ($\omega$)
+have generally been interpreted in two ways ---
 $x/\omega$ as the \emph{rate} of partnership change ($Q$) or
 $x$ as the \emph{number} of current partners ($K$):
 \begin{subequations}\label{eq:bQK}
@@ -48,7 +48,7 @@ $x$ as the \emph{number} of current partners ($K$):
   K &\approx x \label{eq:bK}
 \end{alignat}
 \end{subequations}
-Both interpretations are reasonable under certain conditions:
+Both interpretations are reasonable under certain conditions.
 If partnership duration is short and the recall period is long
 ($\delta \ll \omega$, \eg 1~day \vs 1~month),
 then reported partnerships mostly reflect \emph{complete} partnerships,
@@ -62,16 +62,35 @@ However, if partnership duration and recall period are similar in length
 then reported partnerships reflect a mixture of tail-ends, of complete, and of ongoing partnerships.
 Thus $x/\omega$ overestimates $Q$, but $x$ also overestimates $K$.
 These three cases are illustrated in Figure~\ref{fig:diag.partner.cases}.
-\par
-To adjust for this bias, we again assume that survey/recall period timing is effectively random.
-Then, if the \emph{end} of the recall period would intersect an ongoing partnership,
+To move beyond these crude estimates of $Q$ and $K$,
+we develop the another hierarchical model as follows.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Sampling}
+As before, \cite{Baral2014} estimates RDS-adjusted proportions of respondents $p_z$ (mean, \ci)
+reporting different numbers/ranges of partners $\mathbb{x}_z$ in the past 30 days
+(Table~\ref{tab:data}).
+Thus, we take the same approach as in \sref{meth.yss}
+to identify distributions of reported partner numbers $x_i$
+which are consistent with these proportion data for each partnership type.
+%---------------------------------------------------------------------------------------------------
+\paragraph{Censoring}
+To account for reporting of tail-ends, complete, and ongoing partnerships within the recall period,
+we again assume that survey/recall period timing is effectively random.
+Then, if the start of the recall period would intersect an ongoing partnership,
 then a random fraction $f_i \sim \distr{Unif}{0,1}$ of the partnership duration $\delta$
 would be outside the recall period.
 As before, the expected value $\bar{f} = \frac12$.
 % LW: for this part - (same goes for the previous section) -
 %     i wonder if other modeling studies have incorporated the same in their parameterization?
 %     if so - could cite and mention.
-The same goes for the \emph{start} of the recall period.
+% JK: As far as I know, though I haven't done a deep review,
+%     this has not been considered in modelling papers,
+%     though I mainly know compartmental, not IBM models;
+%     Burington2010 (epi paper) discuss in some detail.
+%     One reason is that many models simply use the # reported partners in p12m,
+%     i.e. implicitly truncate durations to 1 year,
+%     which leads to those issues described in the FOI paper...
+The same goes for the end of the recall period.
 Thus, the recall period is effectively extended by
 half the partnership duration $\delta/2$ on each end, and $\delta$ overall \cite{Neely2023},
 as illustrated in Figure~\ref{fig:diag.partner.recall}.
@@ -94,20 +113,24 @@ The primary parameters of interest are $\alpha, \beta$, which govern
 the distribution of rates of partnership change (for a given type) $Q$.
 We assume uninformative priors for these 2 parameters.
 %---------------------------------------------------------------------------------------------------
-\paragraph{Comparing Assumptions}
+\paragraph{Comparing Approaches}
 To quantify the influence of using
-the biased \vs unbiased estimators of $Q$ and $K$,
+the crude \vs adjusted estimators of $Q$~and~$K$,
 % LW: shall we call it crude vs. adjusted estimates instead?
 %     (for estimates when u adjust for partial bias mechanism - what do u call it for now?)
-we fit the proposed model for each partnership type under three assumptions:
-assuming \emph{short} partnerships as in \eqref{eq:bQ} with $\omega' = \omega$;
-assuming \emph{long} partnerships as in \eqref{eq:bK} with $\omega' = \delta$; and
-our \emph{unbiased} approach as in \eqref{eq:uQK} with $\omega' = \omega + \delta$.
+% JK: yeah, we had explored different terms previously
+%     but I do like your suggestion of crude vs adjusted for consistentcy with 2.1
+%     & have updated throughout
+we fit the proposed model for each partnership type under three approaches:
+crude assuming \emph{short} partnerships as in \eqref{eq:bQ} with $\omega' = \omega$;
+crude assuming \emph{long} partnerships as in \eqref{eq:bK} with $\omega' = \delta$; and
+our \emph{adjusted} approach as in \eqref{eq:uQK} with $\omega' = \omega + \delta$.
 % LW: i wonder instead calling as 3 assumptions - the 3rd one is not really an assumption
 %     but ur proposed bias adjusted approach - which can handle any assumption
 %     of partnership duration estimates. wonder if u can make it clearer.
-To illustrate more general trends in the magnitude of bias,
-we further compared biased \vs unbiased estimates of $Q$ and $K$ across a range of different
+% JK: as above
+To illustrate more general trends in the magnitude of potential biases,
+we further compared crude \vs adjusted estimates of $Q$ and $K$ across a range of different
 partnership durations $\delta \in [0.1, 10]$ and
 recall periods $\omega \in [0.1, 10]$,
 with fixed true rate $Q = 1$ (arbitrary units).
