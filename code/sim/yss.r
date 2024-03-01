@@ -6,11 +6,11 @@ adjs = list(
   'all'  = list(adj.cens=1,adj.stop=1))
 
 adj.labs = list(
-  'med'  = 'Median',
-  'mean' = 'Mean',
+  'med'  = 'Crude: Median',
+  'mean' = 'Crude: Mean',
   'samp' = '+ Sampling',
   'cens' = '+ Censoring',
-  'all'  = '+ Measurement')
+  'all'  = '+ Interruption')
 
 vars = c('D','S','G')
 
@@ -46,7 +46,7 @@ plot.cdf = function(D.s,t){
     geom_ribbon(aes(ymin=cdf.lo,ymax=cdf.hi,fill=adj),alpha=.2) +
     geom_line(aes(y=cdf.m,color=adj,lty=adj)) +
     geom_point(data=D.m,aes(x=m,y=1-exp(-1),color=adj),shape=1,show.legend=FALSE) +
-    scale_linetype_manual(values=c('11','21','41','81','solid'),name='Adjustment') +
+    scale_linetype_manual(values=c('solid','81','41','21','11'),name='Adjustment') +
     labs(x='Years selling sex',y='Cumulative proportion')
   g = plot.clean(plot.cmap(g,'yss'))
   fig.save('yss.adj',w=5,h=3)
@@ -72,8 +72,7 @@ main.fsw = function(){
   X = load.data('yss')
   X.s = run.fresh('yss',
     do.call(rbind,par.lapply(names(adjs),function(adj){ sim.fsw(X,adj) })))
-  plot.samples(rho.split(X.s)$var)
-  q()
+  # plot.samples(rho.split(X.s)$var)
   plot.fit(X,rho.split(X.s)$rho)
   D.s = X.s[X.s$variable=='D',]
   print(aggregate(value~variable+adj,D.s,mci.named,rnd=2))

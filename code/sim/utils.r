@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
 options(width=180)
 
 N = list(i=100,adapt=1e3,iter=1e5,seed=0)
-fresh = TRUE
+fresh = FALSE
 
 rename = setNames
 
@@ -84,7 +84,7 @@ plot.cmap = function(g,case,...){
     yss      = list(option='viridis',direction=+1,begin=0, end=1,name='Adjustment'),
     yss.fit  = list(option='viridis',direction=+1,begin=.4,end=1,name='Adjustment'),
     grid     = list(option='inferno',direction=-1,begin=.1,end=.9,name='Partnership\nDuration'),
-    part.fit = list(option='inferno',direction=-1,begin=.3,end=.7,name='Assumption')
+    part.fit = list(option='inferno',direction=-1,begin=.3,end=.7,name='Approach')
   )[[case]]
   clr.args = c(clr.args,list(discrete=TRUE,drop=FALSE))
   g = g + do.call(scale_color_viridis,clr.args) + do.call(scale_fill_viridis,clr.args)

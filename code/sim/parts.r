@@ -1,6 +1,6 @@
 source('sim/utils.r')
 
-biases = c('Short','Unbiased','Long')
+biases = c('Crude: Short','Adjusted','Crude: Long')
 durs   = c('swo'=1/30,'swr'=4,'npp'=36)
 types  = c('New Clients'='swo','Regular Clients'='swr','Non-Paying'='npp')
 vars   =  c('Q: Rate of\nPartnership Change'='Q',
@@ -29,16 +29,16 @@ plot.fsw = function(X.s){
     scale_y_continuous(trans='log10') +
     geom_violin(aes(fill=bias),color=NA,alpha=.6,adjust=3) +
     geom_point(aes(color=bias),stat='summary',fun=median,shape=1) +
-    labs(x='Assumption',y='Value')
+    labs(x='Approach',y='Value')
   g = plot.clean(plot.cmap(g,'part.fit'),legend.position='top')
-  fig.save('parts.fsw',w=4,h=6)
+  fig.save('parts.fsw',w=4.5,h=6)
 }
 
 sim.fsw = function(X,bias){
   recall.eff = function(recall,dur){ list(
-    'Long' = dur,
-    'Short' = recall,
-    'Unbiased' = recall+dur
+    'Crude: Long'  = dur,
+    'Crude: Short' = recall,
+    'Adjusted'     = recall+dur
   )[[bias]] }
   X.s = do.call(rbind,par.lapply(types,function(type){
     X.i = X[X$type==type,]
@@ -61,8 +61,8 @@ main.fsw = function(){
   X.s = run.fresh('parts',
     do.call(rbind,par.lapply(biases,function(bias){ sim.fsw(X,bias=bias) })))
   plot.fit(X,rho.split(X.s)$rho)
-  X.s = X.s[!(X.s$variable=='Q' & X.s$bias=='Long')  &
-            !(X.s$variable=='K' & X.s$bias=='Short') &
+  X.s = X.s[!(X.s$variable=='Q' & X.s$bias=='Crude: Long')  &
+            !(X.s$variable=='K' & X.s$bias=='Crude: Short') &
              (X.s$variable %in% vars),]
   X.mci = aggregate(value~variable+type+bias,X.s,mci.named,rnd=2)
   print(X.mci[order(X.mci$variable,X.mci$type),])
@@ -78,19 +78,19 @@ plot.grid = function(X.b){
     scale_y_continuous(trans='log10') +
     scale_x_continuous(trans='log10') +
     scale_linetype_manual(values=c('solid','21','42')) +
-    labs(x='Recall Period',y='Variable Value',lty='Assumption')
+    labs(x='Recall Period',y='Variable Value',lty='Approach')
   g = plot.clean(plot.cmap(g,'grid'))
   fig.save('parts.grid',w=6,h=3)
 }
 
 main.grid = function(Q=1){
   X = expand.grid(rec = 10^seq(-1,+1,.2), dur = c(.1,.3,1,3,10))
-  X.b = rbind( # 3 bias cases
-    cbind(X,bias='Unbiased', Q = Q, K = Q*X$dur),
-    cbind(X,bias='Short',    Q = Q*(X$rec+X$dur)/X$rec, K = NA),
-    cbind(X,bias='Long',     Q = NA, K = Q*(X$rec+X$dur)))
+  X.b = rbind( # 3 approach cases
+    cbind(X,bias='Adjusted',     Q = Q, K = Q*X$dur),
+    cbind(X,bias='Crude: Short', Q = Q*(X$rec+X$dur)/X$rec, K = NA),
+    cbind(X,bias='Crude: Long',  Q = NA, K = Q*(X$rec+X$dur)))
   plot.grid(X.b)
 }
 
 main.fsw()
-# main.grid()
+main.grid()
