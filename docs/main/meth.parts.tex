@@ -1,31 +1,10 @@
 %---------------------------------------------------------------------------------------------------
 \paragraph{Data \& Assumptions}
-% LW: i wonder if helpful to break ur base estimate/data into two sections:
-%     one section focus on describing the survey data only.
-%     2nd section focus on 'conventional ways of estimating the paramters of interest
-%     from the survey data' (aka: base estimate).
-%     same applies for 2.1
-% JK: Oh, I really like this! Since the data for yss is basically 1 sentence,
-%     I combined with the crude estimate, vs here where we need data & assumptions
-%     as it's own subsection, followed by a crude estimate subsection as you suggested
-%     for more consistent flow between both sections (2.1, 2.2)
 The survey \cite{Baral2014} also asked respondents to report
 their numbers of sexual partners in a recall period of 30 days.
 Numbers were stratified by three types of partner:
 new paying clients, regular paying clients, and non-paying partners.
 However, the survey did not ask about partnership durations.
-% LW: add here: 'however, the survey did not ask about duration for each type of partnerhship"
-%     u had below - i think better bring up here.
-%     describe what is survey data is available/ and what is not (limitation). then ur solutions.
-% JK: ah, good point -- I have added above.
-% LW: i would consider bring in the word 'triangulation' some where in your paper.
-%     it is not just biases adjustment - if the data collected was not intended to use for
-%     a specific estimates. but rather missing data problem in certain case.
-% JK: Hmm, I do like this suggestion, but my understanding of triangulation is
-%     averaging/combining multiple potential sources for the same variable,
-%     whereas we are focused on bias adjustments for one data source ---
-%     for that reason I have added only in the discussion that
-%     our approach could extend to include multiple data sources, as in triangulation.
 We assume that only a small proportion of new clients go on to become regular clients;
 thus, we conceptualize ``new'' clients as effectively ``one-off'' clients.%
 \footnote{The number of new clients per recall period
@@ -80,16 +59,6 @@ Then, if the start of the recall period would intersect an ongoing partnership,
 then a random fraction $f_i \sim \distr{Unif}{0,1}$ of the partnership duration $\delta$
 would be outside the recall period.
 As before, the expected value $\bar{f} = \frac12$.
-% LW: for this part - (same goes for the previous section) -
-%     i wonder if other modeling studies have incorporated the same in their parameterization?
-%     if so - could cite and mention.
-% JK: As far as I know, though I haven't done a deep review,
-%     this has not been considered in modelling papers,
-%     though I mainly know compartmental, not IBM models;
-%     Burington2010 (epi paper) discuss in some detail.
-%     One reason is that many models simply use the # reported partners in p12m,
-%     i.e. implicitly truncate durations to 1 year,
-%     which leads to those issues described in the FOI paper...
 The same goes for the end of the recall period.
 Thus, the recall period is effectively extended by
 half the partnership duration $\delta/2$ on each end, and $\delta$ overall \cite{Neely2023},
@@ -116,19 +85,10 @@ We assume uninformative priors for these 2 parameters.
 \paragraph{Comparing Approaches}
 To quantify the influence of using
 the crude \vs adjusted estimators of $Q$~and~$K$,
-% LW: shall we call it crude vs. adjusted estimates instead?
-%     (for estimates when u adjust for partial bias mechanism - what do u call it for now?)
-% JK: yeah, we had explored different terms previously
-%     but I do like your suggestion of crude vs adjusted for consistentcy with 2.1
-%     & have updated throughout
 we fit the proposed model for each partnership type under three approaches:
 crude assuming \emph{short} partnerships as in \eqref{eq:bQ} with $\omega' = \omega$;
 crude assuming \emph{long} partnerships as in \eqref{eq:bK} with $\omega' = \delta$; and
 our \emph{adjusted} approach as in \eqref{eq:uQK} with $\omega' = \omega + \delta$.
-% LW: i wonder instead calling as 3 assumptions - the 3rd one is not really an assumption
-%     but ur proposed bias adjusted approach - which can handle any assumption
-%     of partnership duration estimates. wonder if u can make it clearer.
-% JK: as above
 To illustrate more general trends in the magnitude of potential biases,
 we further compared crude \vs adjusted estimates of $Q$ and $K$ across a range of different
 partnership durations $\delta \in [0.1, 10]$ and
