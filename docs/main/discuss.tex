@@ -1,17 +1,17 @@
 \section{Discussion}
 We sought to develop bias adjustments for estimating
-the mean duration in epidemiological risk states (periods of risk)
-and rates of sexual partnership change
+mean duration in epidemiological risk states (periods of risk) and
+mean rates of sexual partnership change
 from aggregate cross-sectional data.
 We developed these adjustments using Bayesian hierarchical models to incorporate
 uncertainty in the available data and
 mechanistic assumptions about several bias-generating processes.
 We showed that these adjustments can influence
 estimated parameter means by factors approaching 2,
-suggesting that biased estimates of these parameters
+suggesting that unadjusted estimates of these parameters
 % LW: would prefer this term than 'biased estimates'. as i noted in my comments earlier
-% JK: done
-should be interpreted carefully.
+% JK: done -- edit: actually I prefer unadjusted (reverted)
+should be interpreted with care.
 \par
 We grounded our study in the analysis of aggregate sex work data
 to parameterize a mathematical model of HIV transmission.
@@ -21,24 +21,33 @@ including analysis of individual-level data for conventional statistical models.
 For example, periods of hazardous conditions may need to be quantified
 in an empiric study of workplace injury risk.
 Additionally, estimates of population-attributable fractions
-may be improved through our insight that: in some cross-sectional studies,
+may be improved through our observation that: in many cross-sectional studies,
 reported exposure duration reflects only half of the total expected exposure duration.
 \par
 % LW: i think in discussion u can also talk about the gap in data collection.
 %     importance of incorporte survey questions on duration of partnership etc. and on gaps
 %     then mention even when those questions are asked - subject to censoring -
 %     hence ur method can be applied there too
-% JK: TODO
-Our work can also be built upon by considering
+% JK: Ah, great point! I've added below
+Our work highlights key variables to collect in sexual behaviour surveys, such as
+numbers of sexual partners per recall period,
+sexual partnership durations, and
+number/durations of gaps within sexual partnerships and/or period of risk.
+Such survey questions could even be designed to support
+a pre-specified hierarchical model,
+and use built-in redundancy to validate model assumptions,
+such as multiple recall periods.
+\par
+Our work can be built upon by considering
 further potential sources of bias and/or uncertainty.
 For example, we assumed a fixed duration for each sexual partnership type,
 but this duration could be modelled as another random variable
-whose distribution could also be inferred.
-Moreover, future work could consider
+whose distribution could also be inferred from additional data.
+Future work could also consider
 rounding error~\cite{Mills2014},
 recall bias~\cite{Ramjee1999},
 reporting bias~\cite{Lowndes2012},
 and the like \cite{Fenton2001}.
-Our approach could also be extended to support
+Finally, our approach could be extended to support
 triangulation from multiple data sources \cite{Lawlor2016},
-with potentially different mechanisms of bias.
+with potentially different mechanisms of bias for each source explicitly modelled.
