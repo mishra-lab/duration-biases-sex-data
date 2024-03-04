@@ -1,5 +1,6 @@
 # general
 .old/
+.coa/
 .tmp/
 .rdata/
 .sub/
