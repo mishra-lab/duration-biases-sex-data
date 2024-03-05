@@ -4,6 +4,7 @@
       \centering\includegraphics[scale=1]{model.yss}
     \end{minipage}
     \begin{minipage}{.5\textwidth}
+      \begin{subequations}
       \begin{align}
            p_z &\sim \distr{BAB}{N_z, \hat{\rho}_z} \\
   \hat{\rho}_z &=    \distr{mean}{d_i \in \mathbb{d}_z} \\
@@ -14,6 +15,7 @@
            g_i &\sim \distr{Exp}{1/\bar{g}} \\
           \phi &\sim \distr{BAB}{N, 1-e^{-\bar{s}}\,}
       \end{align}
+      \end{subequations}
     \end{minipage}
     \caption{Duration selling sex}
     \label{fig:model.yss}
@@ -23,17 +25,19 @@
       \centering\includegraphics[scale=1]{model.part}
     \end{minipage}
     \begin{minipage}{.5\textwidth}
+      \begin{subequations}
       \begin{align}
            p_z &\sim \distr{BAB}{N_z, \hat{\rho}_z} \\
   \hat{\rho}_z &=    \distr{mean}{x_i \in \mathbb{x}_z} \\
            x_i &\sim \distr{Pois}{Q_i\,\omega'} \\
            Q_i &\sim \distr{Gamma}{\alpha,\beta}
       \end{align}
+      \end{subequations}
     \end{minipage}
     \caption{Rates of partnership change}
     \label{fig:model.part}
   \end{subfigure}
-  \caption{Graphical and mathematical representations
+  \captionall{Graphical and mathematical representations
     of the proposed Bayesian hierarchical models}
   \label{fig:model}
   \floatfoot{Guide:
@@ -66,6 +70,6 @@
     % misc
     Distributions:
     \g{U}{uniform / uninformative},
-    \g{BAB}{beta approximation of binomial distribution (see \sref{app.bab})}.
+    \g{BAB}{beta approximation of binomial distribution}.
   }
 \end{figure}

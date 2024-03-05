@@ -10,3 +10,5 @@ cls:
 	cp ~/dev/tex/pkg/ms/ms/ms.cls .
 clean:
 	texclean .
+figs:
+	cd fig && make all
