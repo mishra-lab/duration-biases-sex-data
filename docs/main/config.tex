@@ -18,7 +18,7 @@
 \usepackage{graphicx,subcaption,booktabs,multicol}
 \def\rootpath{../..}
 \graphicspath{{\rootpath/out/fig/tikz/}{\rootpath/out/fig/sim/100/}}
-\let\captionall\caption
+\newcommand{\captionall}[1]{\caption{#1}}
 % helpers
 \usepackage{xspace}
 \newlength{\wdigit}\setlength{\wdigit}{\widthof{0}}
