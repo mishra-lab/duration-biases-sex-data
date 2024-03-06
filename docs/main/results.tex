@@ -12,17 +12,7 @@ In this case, the final estimate of 4.06~(2.29,~6.34) is similar to the original
 because each adjustment alternates betwen increasing and decreasing $\bar{D}$.
 The censoring adjustment yields the largest increase, while
 the interruption adjustment yields the largest decrease.
-\begin{figure}[h]
-  \centering\includegraphics[scale=.75]{yss.adj}
-  \caption{Estimated cumulative distribution for years selling sex
-    following each stage of adjustment}
-  \label{fig:yss.adj}
-  \floatfoot{Guide:
-    \g{lines}{cumulative distribution under posterior mean},
-    \g{shaded ribbon}{\ci},
-    \g{circles}{posterior mean};
-    \g{``+''}{adding to existing adjustments}.}
-\end{figure}
+\input{fig.yss}
 %---------------------------------------------------------------------------------------------------
 \subsection{Rates of Partnership Change}\label{res.parts}
 Figure~\ref{fig:parts.fit} illustrates the distributions of
@@ -41,14 +31,4 @@ both $Q$ and $K$ with ``medium-length'' partnerships (\eg regular clients),
 because the assumed partnership duration of $\delta = 4$ months
 is similar to the recall period of $\omega = 1$ month.
 Figure~\ref{fig:parts.grid} illustrates generalized trends in these biases.
-\begin{figure}
-  \centering\includegraphics[scale=.75]{parts.fsw}
-  \caption{Estimates of rates of partnership change and numbers of current partners
-    under different partnership duration assumptions
-    for three partnership types reported by female sex workers}
-  \label{fig:parts.fsw}
-  \floatfoot{Guide:
-    \g{circles}{posterior mean},
-    \g{shaded area}{posterior distribution}.
-    Rates are per-month.}
-\end{figure}
+\input{fig.parts}
