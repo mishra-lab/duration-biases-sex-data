@@ -15,6 +15,7 @@ code/tikz/main.pdf
 *-blx.aux
 *-blx.bib
 *.brf
+*.fff
 *.log
 *.out
 *.ptc*
@@ -22,5 +23,6 @@ code/tikz/main.pdf
 *.synctex
 *.synctex.gz
 *.toc
+*.ttt
 # windows
 .DS_Store
