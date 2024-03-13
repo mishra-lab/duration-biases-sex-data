@@ -27,7 +27,7 @@ reps = [
   ('\\\\href\{.*?\}\{(.*?)\}', '\\1'),
 ]
 # main
-def wc(label,files,clean=True):
+def wc(label,files):
   # load
   text = ''
   for file in files:
@@ -40,9 +40,8 @@ def wc(label,files,clean=True):
   # output
   with open('text.tmp','w') as f:
     f.write(text)
-  os.system('echo -n \ '+label+':\ && wc -w text.tmp | cut -d " " -f1')
-  if clean:
-    os.system('rm text.tmp')
+  os.system('echo $(wc -w text.tmp | cut -d " " -f1) '+label)
 
-wc(' abs',sys.argv[1:2])
-wc('body',sys.argv[2:],clean=False)
+for arg in sys.argv[1:]:
+  wc(arg,arg.split('+'))
+os.system('rm text.tmp')
